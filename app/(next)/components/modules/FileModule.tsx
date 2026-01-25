@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import ExternalLink from "../header/ExternalLink";
+
 
 type Props = {
   item: {
@@ -11,12 +11,10 @@ type Props = {
 const FileModule = ( {item} : Props) => {
    const [isMobile, setIsMobile] = useState(false);
    useEffect(() => {
-    // Basic mobile detection based on screen width
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
     };
-
-    handleResize(); // initial check
+    handleResize();
     window.addEventListener("resize", handleResize);
 
     return () => window.removeEventListener("resize", handleResize);
