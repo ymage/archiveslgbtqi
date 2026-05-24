@@ -1,6 +1,7 @@
-*
-
-!.next
-!docker
-!node_modules
-!next.config.js
+.git
+.github
+node_modules
+.next
+.env*
+docker
+*.md
