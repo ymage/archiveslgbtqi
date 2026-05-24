@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.7](https://github.com/ymage/archiveslgbtqi/compare/v0.1.6..v0.1.7) - 2026-05-24
+
+### 🐞 Bug Fixes
+
+- *(container)* Fix Dockerfile - ([1196045](https://github.com/ymage/archiveslgbtqi/commit/1196045b1f1b591b3f5f12682e926e158ff506b7))
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.6](https://github.com/ymage/archiveslgbtqi/compare/v0.1.5..v0.1.6) - 2026-05-24
 
 ### 🚜 Refactor
