@@ -36,7 +36,9 @@ FROM base
 
 EXPOSE 3000/tcp
 
-RUN apk add --no-cache --update-cache bash libc6-compat \
+RUN apk add --no-cache --upgrade \
+        bash \
+        libc6-compat && \
     addgroup --gid 10001 --system app && \
     adduser --uid 10001 \
             --system \
