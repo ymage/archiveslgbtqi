@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.1](https://github.com/ymage/archiveslgbtqi/compare/v0.1.0..v0.1.1) - 2026-05-24
+
+### 📚 Documentation
+
+- *(readme)* Rewrite project documentation - ([dbdf180](https://github.com/ymage/archiveslgbtqi/commit/dbdf180bea6ea4f8d55fa761130715644c20a805))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Update GitHub Actions workflow - ([84718d0](https://github.com/ymage/archiveslgbtqi/commit/84718d0877b1be7756de817429a76d3563175d49))
+
+### 📊 Commit Statistics
+
+- 2 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 2 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.0] - 2026-05-24
 
 ### ✨ Features
