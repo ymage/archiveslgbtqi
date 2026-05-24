@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.4](https://github.com/ymage/archiveslgbtqi/compare/v0.1.3..v0.1.4) - 2026-05-24
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Pure Docker build with multi-stage Dockerfile and build args - ([884d97e](https://github.com/ymage/archiveslgbtqi/commit/884d97e9788d300db89d451748866b8ad412d831))
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.3](https://github.com/ymage/archiveslgbtqi/compare/v0.1.2..v0.1.3) - 2026-05-24
 
 ### ⚙️ Miscellaneous Tasks
