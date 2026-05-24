@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.2](https://github.com/ymage/archiveslgbtqi/compare/v0.1.1..v0.1.2) - 2026-05-24
+
+### 🐞 Bug Fixes
+
+- *(entrypoint)* Use HOST/PORT env vars at startup time - ([a3b89f6](https://github.com/ymage/archiveslgbtqi/commit/a3b89f6fbceaf528d368728c28b3c82da61cfac9))
+- *(image)* Use alpine 3.23 - ([5b33306](https://github.com/ymage/archiveslgbtqi/commit/5b333065442813e1a90dee4b6483d3200aa5b810))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Remove useless build time env vars - ([8f470d3](https://github.com/ymage/archiveslgbtqi/commit/8f470d32ecf3bc4f633927296ac392cf099c6244))
+
+### 📊 Commit Statistics
+
+- 3 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 3 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.1](https://github.com/ymage/archiveslgbtqi/compare/v0.1.0..v0.1.1) - 2026-05-24
 
 ### 📚 Documentation
