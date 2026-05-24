@@ -34,22 +34,22 @@ RUN chmod 0755 /tmp/bin/entrypoint.sh
 # --- Runtime ---
 FROM base
 
-LABEL org.opencontainers.image.description="Archives LGBTQI"
+EXPOSE 3000/tcp
 
 RUN apk add --no-cache --update-cache bash libc6-compat \
-    && addgroup -S app \
-    && adduser -S app -G app
+    addgroup --gid 10001 --system app && \
+    adduser --uid 10001 \
+            --system \
+            --disabled-password \
+            --home /var/www \
+            --shell /sbin/nologin \
+            --ingroup app \
+            --gecos app \
+            app
 
 COPY --from=builder /application.tar.gz /application.tar.gz
 COPY --from=builder /tmp/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
-ENV HOME=/var/www
 WORKDIR /var/www
-
-RUN chown app:app /var/www
-
 USER app
-
-EXPOSE 3000/tcp
-
-ENTRYPOINT ["entrypoint.sh"]
+ENTRYPOINT [ "entrypoint.sh" ]

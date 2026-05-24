@@ -7,6 +7,10 @@ err_report() {
 trap 'err_report $? ${LINENO}' ERR
 
 cd /var/www
-tar xfz /application.tar.gz
+
+# Clean up and extract application
+echo "Begin : Unarchive archiveslgbtqi webapp"
+tar xvf /application.tar.gz
+echo "End : Unarchive archiveslgbtqi webapp"
 
 npx next start -H "${HOST:-0.0.0.0}" -p "${PORT:-3000}"
