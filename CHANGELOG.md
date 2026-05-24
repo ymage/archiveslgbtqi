@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.3](https://github.com/ymage/archiveslgbtqi/compare/v0.1.2..v0.1.3) - 2026-05-24
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Set dynmamic for resend - ([61fc63d](https://github.com/ymage/archiveslgbtqi/commit/61fc63d39e3359d18c75b142a3c9e95ce9fc4006))
+- Update some packages minor versions - ([ea6931c](https://github.com/ymage/archiveslgbtqi/commit/ea6931cfa50d050950036a1eaaf972879e1ba764))
+
+### 📊 Commit Statistics
+
+- 2 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 2 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.2](https://github.com/ymage/archiveslgbtqi/compare/v0.1.1..v0.1.2) - 2026-05-24
 
 ### 🐞 Bug Fixes
