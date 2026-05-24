@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.5](https://github.com/ymage/archiveslgbtqi/compare/v0.1.4..v0.1.5) - 2026-05-24
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Remove docker folder from dockerignore - ([f2b7096](https://github.com/ymage/archiveslgbtqi/commit/f2b7096e1de6f3eb9eabf806acba49b149f5c335))
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.4](https://github.com/ymage/archiveslgbtqi/compare/v0.1.3..v0.1.4) - 2026-05-24
 
 ### ⚙️ Miscellaneous Tasks
