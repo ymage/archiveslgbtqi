@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.6](https://github.com/ymage/archiveslgbtqi/compare/v0.1.5..v0.1.6) - 2026-05-24
+
+### 🚜 Refactor
+
+- *(docker)* Harden runtime user with fixed UID/GID and improve startup logging - ([ca6e4bd](https://github.com/ymage/archiveslgbtqi/commit/ca6e4bdb6371bfa52693fd51ff524ff357103c0c))
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.5](https://github.com/ymage/archiveslgbtqi/compare/v0.1.4..v0.1.5) - 2026-05-24
 
 ### ⚙️ Miscellaneous Tasks
