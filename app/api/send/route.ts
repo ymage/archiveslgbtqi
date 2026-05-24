@@ -2,6 +2,8 @@ import { Resend } from "resend";
 
 import { CustomEmail } from "@/app/(next)/components/ui";
 
+export const dynamic = "force-dynamic";
+
 export async function GET() {
   const resend = new Resend(process.env.RESEND_API_KEY);
 
