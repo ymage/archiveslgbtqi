@@ -43,3 +43,7 @@ next-env.d.ts
 
 # Base Readme
 README-copy.md
+
+# Exclude Claude
+.claude/
+.planning/
