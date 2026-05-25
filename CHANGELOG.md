@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.10](https://github.com/ymage/archiveslgbtqi/compare/v0.1.9..v0.1.10) - 2026-05-25
+
+### ⚙️ Miscellaneous Tasks
+
+- *(node)* Use node 24 - ([276343a](https://github.com/ymage/archiveslgbtqi/commit/276343a1d5f23c15dc27ca1a90aa0775a860d9f5))
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.9](https://github.com/ymage/archiveslgbtqi/compare/v0.1.8..v0.1.9) - 2026-05-25
 
 ### 🐞 Bug Fixes
