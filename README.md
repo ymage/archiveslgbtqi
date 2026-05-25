@@ -34,9 +34,16 @@ Créer un fichier `.env` à la racine avec les variables suivantes :
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=votre-project-id
 NEXT_PUBLIC_SANITY_DATASET=production
-NEXT_PUBLIC_SANITY_API_VERSION=2024-02-28
 SANITY_API_READ_TOKEN=votre-token
 ```
+
+**Optionnelle :**
+
+```env
+NEXT_PUBLIC_SANITY_API_VERSION=2024-02-28
+```
+
+> `NEXT_PUBLIC_SANITY_API_VERSION` possède une valeur par défaut (`2024-02-28`) ; elle n'est nécessaire que si vous souhaitez cibler une version d'API Sanity différente.
 
 ### Variables d'exécution (requis au démarrage du conteneur)
 
@@ -88,16 +95,17 @@ docker run -p 3000:3000 \
   archives-lgbtqi
 ```
 
-L'image utilise un utilisateur non-root (`app`) et expose le port `3000`. Les variables `HOST` et `PORT` sont prises en charge par le point d'entrée (`docker/docker-entrypoint.sh`).
+L'image est construite en multi-stage : Node.js compile l'application, puis les artefacts (`.next`, `node_modules`, `next.config.js`) sont copiés directement dans l'image finale sans passer par une archive. L'image utilise un utilisateur non-root (`app`, UID/GID 10001) et expose le port `3000`. Les variables `HOST` et `PORT` sont prises en charge par le point d'entrée (`docker/docker-entrypoint.sh`).
 
 ## CI/CD
 
 Le déploiement est automatisé via GitHub Actions (`.github/workflows/build.yml`) :
 
+- Déclenchement uniquement sur la branche `main` ou les tags de version (`v*`)
 - Build multi-arch de l'image Docker avec les arguments de build pour les variables Sanity
 - Push sur GitHub Container Registry
-- Génération d'attestations de build
-- Nettoyage automatique des anciennes images
+- Génération d'attestations de build (uniquement pour les releases taguées)
+- Nettoyage automatique des anciennes images (uniquement pour les releases taguées)
 - Cache Docker via GitHub Actions Cache
 
 ## Outils de développement
