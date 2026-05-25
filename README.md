@@ -15,7 +15,7 @@ Site web du Centre Archives LGBTQI+ Paris, développé avec [Next.js](https://ne
 
 ## Prérequis
 
-- Node.js 20.x
+- Node.js 24.x
 - npm
 - Un projet Sanity avec les variables d'environnement configurées
 
@@ -136,7 +136,7 @@ Le déploiement est automatisé via GitHub Actions (`.github/workflows/build.yml
 
 ## Outils de développement
 
-Le projet inclut une configuration [`mise.toml`](./mise.toml) pour les utilisateurs de [mise](https://mise.jdx.dev/) afin de fixer la version de Node.js à 20.
+Le projet inclut une configuration [`mise.toml`](./mise.toml) pour les utilisateurs de [mise](https://mise.jdx.dev/) afin de fixer la version de Node.js à 24.
 
 ## Changelog
 
