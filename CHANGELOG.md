@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.9](https://github.com/ymage/archiveslgbtqi/compare/v0.1.8..v0.1.9) - 2026-05-25
+
+### 🐞 Bug Fixes
+
+- *(sanity)* Split browser-safe and server-optimized clients - ([2fd1bec](https://github.com/ymage/archiveslgbtqi/commit/2fd1bece66c3069b798b6ab16809c021735ebb17))
+
+### 🚜 Refactor
+
+- *(sanity)* Make API read token lazy and draft route dynamic - ([aee1522](https://github.com/ymage/archiveslgbtqi/commit/aee1522519587eadcf7afe81b1f8264a18354142))
+
+### 📚 Documentation
+
+- *(readme)* Document dual-client architecture and runtime secrets - ([9113db6](https://github.com/ymage/archiveslgbtqi/commit/9113db63b355b5966a2829398cfb5cd90b5f123f))
+
+### Other
+
+- *(docker)* Remove SANITY_API_READ_TOKEN from build arguments - ([8b3b32d](https://github.com/ymage/archiveslgbtqi/commit/8b3b32d058a54af17fa583e090373c1c32141bc2))
+
+### 📊 Commit Statistics
+
+- 4 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 4 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.8](https://github.com/ymage/archiveslgbtqi/compare/v0.1.7..v0.1.8) - 2026-05-25
 
 ### 📚 Documentation
