@@ -49,7 +49,7 @@ RUN apk add --no-cache --upgrade \
 COPY --from=builder /tmp/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www
-COPY --from=builder /app/ .
-
+COPY --chown=app:app --from=builder /app/ .
 USER app
+
 ENTRYPOINT [ "entrypoint.sh" ]
