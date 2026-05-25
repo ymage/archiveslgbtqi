@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.8](https://github.com/ymage/archiveslgbtqi/compare/v0.1.7..v0.1.8) - 2026-05-25
+
+### 📚 Documentation
+
+- *(readme)* Clarify optional build vars and ci/cd behavior - ([0513ed7](https://github.com/ymage/archiveslgbtqi/commit/0513ed74dfeb1a82ef4ba1418ab6bbc4be1a7bf3))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(build)* Restrict attestation and registry cleanup to tag releases - ([67a4887](https://github.com/ymage/archiveslgbtqi/commit/67a48874d24febb1499206017caec83e8832dfe4))
+- *(build)* Run workflow only on main branch or version tags - ([9fa8eb4](https://github.com/ymage/archiveslgbtqi/commit/9fa8eb42484be9f6fc464871cc106a6babbc4295))
+- *(git)* Exclude local claude and planning directories - ([95ba924](https://github.com/ymage/archiveslgbtqi/commit/95ba924e9bbd47c35d6b08223c199ec26b5919ed))
+
+### Other
+
+- *(docker)* Simplify runtime by copying files directly instead of tar archive - ([92f22a7](https://github.com/ymage/archiveslgbtqi/commit/92f22a71b7946787fb0fd05c420be41e82a0e53b))
+
+### 📊 Commit Statistics
+
+- 5 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 5 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 1 day(s) passed between releases.
 ## [0.1.7](https://github.com/ymage/archiveslgbtqi/compare/v0.1.6..v0.1.7) - 2026-05-24
 
 ### 🐞 Bug Fixes
