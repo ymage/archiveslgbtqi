@@ -25,8 +25,7 @@ ENV NEXT_PUBLIC_SANITY_PROJECT_ID=$NEXT_PUBLIC_SANITY_PROJECT_ID
 ENV SANITY_API_READ_TOKEN=$SANITY_API_READ_TOKEN
 
 RUN npm run build
-
-RUN tar cfz /application.tar.gz .next node_modules next.config.js
+RUN mkdir -p /app && cp -r .next node_modules next.config.js /app/
 
 COPY docker/docker-entrypoint.sh /tmp/bin/entrypoint.sh
 RUN chmod 0755 /tmp/bin/entrypoint.sh
@@ -49,9 +48,10 @@ RUN apk add --no-cache --upgrade \
             --gecos app \
             app
 
-COPY --from=builder /application.tar.gz /application.tar.gz
 COPY --from=builder /tmp/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www
+COPY --from=builder /app/ .
+
 USER app
 ENTRYPOINT [ "entrypoint.sh" ]
