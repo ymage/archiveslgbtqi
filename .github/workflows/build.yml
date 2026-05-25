@@ -63,7 +63,6 @@ jobs:
           build-args: |
             NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
             NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
-            SANITY_API_READ_TOKEN=${{ secrets.SANITY_API_READ_TOKEN }}
 
       - name: Generate artifact attestation
         if: github.ref_type == 'tag'
