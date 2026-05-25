@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.12](https://github.com/ymage/archiveslgbtqi/compare/v0.1.11..v0.1.12) - 2026-05-25
+
+### 🐞 Bug Fixes
+
+- *(permissions)* Ensure app user is owner of the app - ([b5c3969](https://github.com/ymage/archiveslgbtqi/commit/b5c3969a7848f92920596cb4e7400de6df265f80))
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
 ## [0.1.11](https://github.com/ymage/archiveslgbtqi/compare/v0.1.10..v0.1.11) - 2026-05-25
 
 ### ⚙️ Miscellaneous Tasks
