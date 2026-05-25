@@ -31,10 +31,11 @@ Créer un fichier `.env` à la racine avec les variables suivantes :
 
 ### Variables de build (requis pour `npm run build` et le build Docker)
 
+Ces variables sont intégrées dans le build Next.js et doivent être fournies au moment du build :
+
 ```env
 NEXT_PUBLIC_SANITY_PROJECT_ID=votre-project-id
 NEXT_PUBLIC_SANITY_DATASET=production
-SANITY_API_READ_TOKEN=votre-token
 ```
 
 **Optionnelle :**
@@ -47,14 +48,37 @@ NEXT_PUBLIC_SANITY_API_VERSION=2024-02-28
 
 ### Variables d'exécution (requis au démarrage du conteneur)
 
+Ces variables ne sont pas intégrées dans le build et doivent être fournies au runtime :
+
 ```env
+SANITY_API_READ_TOKEN=votre-token-sanity
 RESEND_API_KEY=votre-cle-resend
 BREVO_API_KEY=votre-cle-brevo
 BREVO_LIST_ID=votre-list-id
 BREVO_WELCOME_EMAIL_TEMPLATE_ID=votre-template-id
 ```
 
-> **Note** : les variables `NEXT_PUBLIC_SANITY_*` et `SANITY_API_READ_TOKEN` sont également requises au runtime car elles sont intégrées dans le build Next.js. Seules les variables d'email (`RESEND_API_KEY`, `BREVO_*`) peuvent être configurées uniquement au runtime sans rebuild.
+> `SANITY_API_READ_TOKEN` est requis uniquement pour le mode preview (brouillons) et l'API `/api/draft`. Il ne doit **jamais** être intégré dans l'image Docker au build ; passez-le uniquement au runtime via `-e` (Docker) ou les variables d'environnement de votre orchestrateur.
+
+### Fichiers d'environnement supportes
+
+- `.env` — standard Node.js / Next.js
+- `.env.local` — prioritaire sur `.env`, exclu de git
+- `.envrc` — pour les utilisateurs de [direnv](https://direnv.net/), exclu de git
+
+## Architecture des clients Sanity
+
+Le projet utilise deux clients Sanity distincts selon le contexte d'exécution :
+
+| Fichier | Usage | Contexte |
+|---------|-------|----------|
+| `sanity/lib/client.ts` | Client browser-safe | Sanity Studio (navigateur), `fetchYears.ts` |
+| `sanity/lib/server-client.ts` | Client avec `cacheable-lookup` | Server Components, API routes, sitemap |
+
+- **`client.ts`** — client `next-sanity` standard, sans dépendance Node.js. Utilisé par le Sanity Studio qui s'exécute dans le navigateur.
+- **`server-client.ts`** — client `next-sanity` optimisé pour le serveur avec mise en cache DNS via `cacheable-lookup` sur les agents `http`/`https` globaux. Utilisé exclusivement côté serveur.
+
+> Ne jamais importer `server-client.ts` depuis du code exécuté dans le navigateur (Studio, composants client) car il dépend de modules Node.js (`http`, `https`).
 
 ## Scripts disponibles
 
@@ -80,14 +104,16 @@ Avec les variables de build :
 docker build -f docker/Dockerfile \
   --build-arg NEXT_PUBLIC_SANITY_PROJECT_ID=xxx \
   --build-arg NEXT_PUBLIC_SANITY_DATASET=production \
-  --build-arg SANITY_API_READ_TOKEN=xxx \
   -t archives-lgbtqi .
 ```
+
+> Ne passez **pas** `SANITY_API_READ_TOKEN` en `build-arg`. Ce token est lu au runtime uniquement.
 
 Lancer le conteneur :
 
 ```bash
 docker run -p 3000:3000 \
+  -e SANITY_API_READ_TOKEN=xxx \
   -e RESEND_API_KEY=xxx \
   -e BREVO_API_KEY=xxx \
   -e BREVO_LIST_ID=xxx \
