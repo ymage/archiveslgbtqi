@@ -7,12 +7,13 @@ import { validatePreviewUrl } from "@sanity/preview-url-secret";
 import { draftMode } from "next/headers";
 import { redirect } from "next/navigation";
 
-import { client } from "@/sanity/lib/client";
-import { token } from "@/sanity/lib/token";
+import { client } from "@/sanity/lib/server-client";
+import { getToken } from "@/sanity/lib/token";
 
-const clientWithToken = client.withConfig({ token });
+export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  const clientWithToken = client.withConfig({ token: getToken() });
   const { isValid, redirectTo = "/" } = await validatePreviewUrl(
     clientWithToken,
     request.url,

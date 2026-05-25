@@ -16,7 +16,6 @@ import CookieBanner from "./components/ui/CookieBanner";
 import { Metadata } from "next";
 import { settingsQuery } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/fetch";
-import { client } from "@/sanity/lib/client";
 import { SettingsQueryResult } from "@/sanity.types";
 
 const cityBurn = localFont({
