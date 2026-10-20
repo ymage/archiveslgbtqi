@@ -25,7 +25,7 @@ export default function LDFDesktopSidebar({ content }: Props) {
       const element = document.getElementById(id);
 
       if (element) {
-        const yOffset = index === 0 ? -143 : -143; // 5rem = 80px for all except the first element
+        const yOffset = -143;
         const y =
           element.getBoundingClientRect().top + window.scrollY + yOffset;
         window.scrollTo({ top: y, behavior: "smooth" });
