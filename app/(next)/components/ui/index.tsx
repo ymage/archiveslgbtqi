@@ -4,7 +4,6 @@ export { default as BannerAlert } from "./BannerAlert";
 export { default as FormSubmission } from "./FormSubmission";
 export { default as MyCustomPortableText } from "./MyCustomPortableText";
 export { default as DateHourFormat } from "./DateHourFormat";
-export { default as CustomEmail } from "./CustomEmail";
 export { default as HeroSection } from "./HeroSection";
 export { default as TextMarquee } from "./TextMarquee";
 
