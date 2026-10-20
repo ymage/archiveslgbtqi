@@ -23,6 +23,7 @@ ENV NEXT_PUBLIC_SANITY_DATASET=$NEXT_PUBLIC_SANITY_DATASET
 ENV NEXT_PUBLIC_SANITY_PROJECT_ID=$NEXT_PUBLIC_SANITY_PROJECT_ID
 
 RUN npm run build
+RUN npm prune --omit=dev
 RUN mkdir -p /app && cp -r .next node_modules next.config.js /app/
 
 COPY docker/docker-entrypoint.sh /tmp/bin/entrypoint.sh
