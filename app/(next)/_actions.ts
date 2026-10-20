@@ -34,12 +34,13 @@ export async function sendEmail(data: ContactFormInputs) {
         from: "<rencensement@archiveslgbtqi.fr>",
         to: ["thibaut.randria@gmail.com"],
         subject: `Proposition d'archive: ${title}`,
-        text: `Nom: ${name}\Adresse mail: ${email}\nMessage: ${message} `,
+        text: `Nom: ${name}\nAdresse mail: ${email}\nMessage: ${message} `,
         react: ContactFormEmail({ name, email, message, title }),
       });
       return { success: true, data };
     } catch (error) {
-      return { success: false, error };
+      console.error("sendEmail failed:", error);
+      return { success: false };
     }
   }
 
