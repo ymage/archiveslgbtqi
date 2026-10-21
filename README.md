@@ -142,6 +142,13 @@ Le projet inclut une configuration [`mise.toml`](./mise.toml) pour les utilisate
 
 Voir [CHANGELOG.md](./CHANGELOG.md) pour l'historique des modifications.
 
+Le changelog est généré par [git-cliff](https://git-cliff.org/) à partir des commits [Conventional Commits](https://www.conventionalcommits.org) selon [`cliff.toml`](./cliff.toml) :
+
+- `cliff.toml` ne contient aucun nom de dépôt : l'URL du dépôt est lue depuis la variable d'environnement `CHANGELOG_REPO_URL` (à défaut, le marqueur `<REPO>` reste visible dans la sortie). Aucune table `[remote.*]` n'est configurée, afin que git-cliff n'interroge pas l'historique distant ; les auteurs sont déduits de `git log`.
+- `.tagme-authors.json` est le fichier de correspondance des auteurs lu par `tagme.sh` (script de release, non versionné dans ce dépôt) ; il est vide (`{}`) par défaut.
+- Les commits des bots (renovate, dependabot, forgejo) et les types `chore(cleanup)`, `chore(typo)`, `chore(version)`, etc. sont exclus du changelog **et** du calcul de version.
+- Tant que le projet est en 0.x, un changement incompatible incrémente la version mineure (`breaking_always_bump_major = false`).
+
 ## Licence
 
 Propriété du Centre Archives LGBTQI+ Paris.
