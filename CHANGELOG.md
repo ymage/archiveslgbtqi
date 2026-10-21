@@ -2,11 +2,40 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.13](https://github.com/ymage/archiveslgbtqi/compare/v0.1.12..v0.1.13) - 2026-10-21
+
+### 🐞 Bug Fixes
+
+- *(contact)* Cap field lengths, add honeypot and stop leaking send errors - ([f3c4b97](https://github.com/ymage/archiveslgbtqi/commit/f3c4b97f37075c4236c225ff3b40fae25435bed2)) by @ymage
+
+### 🚜 Refactor
+
+- *(liste-des-fonds)* Drop redundant yOffset ternary - ([becd474](https://github.com/ymage/archiveslgbtqi/commit/becd4743a0268b8a95bfdd3cc423f999970b05b0)) by @ymage
+
+### 📚 Documentation
+
+- *(readme)* Document changelog generation - ([bd9d260](https://github.com/ymage/archiveslgbtqi/commit/bd9d2608b72d787d9be169c5f451d61a693658da)) by @ymage
+- *(readme)* Align Node.js version with Dockerfile and mise.toml (24.x) - ([e62b5b7](https://github.com/ymage/archiveslgbtqi/commit/e62b5b7904d3744d45f3f8e2d95d6899cd3a50c5)) by @ymage
+
+### ⚙️ Miscellaneous Tasks
+
+- *(changelog)* Make git-cliff config repo-agnostic and drop remote queries - ([eeb4423](https://github.com/ymage/archiveslgbtqi/commit/eeb4423c2cd9772d5b148fd1405e34bf15c6660d)) by @ymage
+- *(github)* Login and push only for tags - ([05fbbbe](https://github.com/ymage/archiveslgbtqi/commit/05fbbbeb98070d49784e98ebbe7eca07ba2a4bf5)) by @ymage
+- *(security)* Add response headers and prune dev dependencies from image - ([fe3cc97](https://github.com/ymage/archiveslgbtqi/commit/fe3cc97397b15a3da4c40f7a3efb936fa1ccf324)) by @ymage
+
+### 📊 Commit Statistics
+
+- 7 commit(s) contributed to the release.
+- 149 day(s) passed between the first and last commit.
+- 7 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 149 day(s) passed between releases.
+
 ## [0.1.12](https://github.com/ymage/archiveslgbtqi/compare/v0.1.11..v0.1.12) - 2026-05-25
 
 ### 🐞 Bug Fixes
 
-- *(permissions)* Ensure app user is owner of the app - ([b5c3969](https://github.com/ymage/archiveslgbtqi/commit/b5c3969a7848f92920596cb4e7400de6df265f80))
+- *(permissions)* Ensure app user is owner of the app - ([b5c3969](https://github.com/ymage/archiveslgbtqi/commit/b5c3969a7848f92920596cb4e7400de6df265f80)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -14,11 +43,12 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.11](https://github.com/ymage/archiveslgbtqi/compare/v0.1.10..v0.1.11) - 2026-05-25
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(github)* Update actions - ([b321ace](https://github.com/ymage/archiveslgbtqi/commit/b321acefdd93f90571b5609a1358b89495feb6bc))
+- *(github)* Update actions - ([b321ace](https://github.com/ymage/archiveslgbtqi/commit/b321acefdd93f90571b5609a1358b89495feb6bc)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -26,11 +56,12 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.10](https://github.com/ymage/archiveslgbtqi/compare/v0.1.9..v0.1.10) - 2026-05-25
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(node)* Use node 24 - ([276343a](https://github.com/ymage/archiveslgbtqi/commit/276343a1d5f23c15dc27ca1a90aa0775a860d9f5))
+- *(node)* Use node 24 - ([276343a](https://github.com/ymage/archiveslgbtqi/commit/276343a1d5f23c15dc27ca1a90aa0775a860d9f5)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -38,23 +69,24 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.9](https://github.com/ymage/archiveslgbtqi/compare/v0.1.8..v0.1.9) - 2026-05-25
 
 ### 🐞 Bug Fixes
 
-- *(sanity)* Split browser-safe and server-optimized clients - ([2fd1bec](https://github.com/ymage/archiveslgbtqi/commit/2fd1bece66c3069b798b6ab16809c021735ebb17))
+- *(sanity)* Split browser-safe and server-optimized clients - ([2fd1bec](https://github.com/ymage/archiveslgbtqi/commit/2fd1bece66c3069b798b6ab16809c021735ebb17)) by @ymage
 
 ### 🚜 Refactor
 
-- *(sanity)* Make API read token lazy and draft route dynamic - ([aee1522](https://github.com/ymage/archiveslgbtqi/commit/aee1522519587eadcf7afe81b1f8264a18354142))
+- *(sanity)* Make API read token lazy and draft route dynamic - ([aee1522](https://github.com/ymage/archiveslgbtqi/commit/aee1522519587eadcf7afe81b1f8264a18354142)) by @ymage
 
 ### 📚 Documentation
 
-- *(readme)* Document dual-client architecture and runtime secrets - ([9113db6](https://github.com/ymage/archiveslgbtqi/commit/9113db63b355b5966a2829398cfb5cd90b5f123f))
+- *(readme)* Document dual-client architecture and runtime secrets - ([9113db6](https://github.com/ymage/archiveslgbtqi/commit/9113db63b355b5966a2829398cfb5cd90b5f123f)) by @ymage
 
-### Other
+### ⚙️ Miscellaneous Tasks
 
-- *(docker)* Remove SANITY_API_READ_TOKEN from build arguments - ([8b3b32d](https://github.com/ymage/archiveslgbtqi/commit/8b3b32d058a54af17fa583e090373c1c32141bc2))
+- *(docker)* Remove SANITY_API_READ_TOKEN from build arguments - ([8b3b32d](https://github.com/ymage/archiveslgbtqi/commit/8b3b32d058a54af17fa583e090373c1c32141bc2)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -62,21 +94,19 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 4 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.8](https://github.com/ymage/archiveslgbtqi/compare/v0.1.7..v0.1.8) - 2026-05-25
 
 ### 📚 Documentation
 
-- *(readme)* Clarify optional build vars and ci/cd behavior - ([0513ed7](https://github.com/ymage/archiveslgbtqi/commit/0513ed74dfeb1a82ef4ba1418ab6bbc4be1a7bf3))
+- *(readme)* Clarify optional build vars and ci/cd behavior - ([0513ed7](https://github.com/ymage/archiveslgbtqi/commit/0513ed74dfeb1a82ef4ba1418ab6bbc4be1a7bf3)) by @ymage
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(build)* Restrict attestation and registry cleanup to tag releases - ([67a4887](https://github.com/ymage/archiveslgbtqi/commit/67a48874d24febb1499206017caec83e8832dfe4))
-- *(build)* Run workflow only on main branch or version tags - ([9fa8eb4](https://github.com/ymage/archiveslgbtqi/commit/9fa8eb42484be9f6fc464871cc106a6babbc4295))
-- *(git)* Exclude local claude and planning directories - ([95ba924](https://github.com/ymage/archiveslgbtqi/commit/95ba924e9bbd47c35d6b08223c199ec26b5919ed))
-
-### Other
-
-- *(docker)* Simplify runtime by copying files directly instead of tar archive - ([92f22a7](https://github.com/ymage/archiveslgbtqi/commit/92f22a71b7946787fb0fd05c420be41e82a0e53b))
+- *(build)* Restrict attestation and registry cleanup to tag releases - ([67a4887](https://github.com/ymage/archiveslgbtqi/commit/67a48874d24febb1499206017caec83e8832dfe4)) by @ymage
+- *(build)* Run workflow only on main branch or version tags - ([9fa8eb4](https://github.com/ymage/archiveslgbtqi/commit/9fa8eb42484be9f6fc464871cc106a6babbc4295)) by @ymage
+- *(docker)* Simplify runtime by copying files directly instead of tar archive - ([92f22a7](https://github.com/ymage/archiveslgbtqi/commit/92f22a71b7946787fb0fd05c420be41e82a0e53b)) by @ymage
+- *(git)* Exclude local claude and planning directories - ([95ba924](https://github.com/ymage/archiveslgbtqi/commit/95ba924e9bbd47c35d6b08223c199ec26b5919ed)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -85,11 +115,12 @@ All notable changes to this project will be documented in this file. See [conven
 - 5 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
 - 1 day(s) passed between releases.
+
 ## [0.1.7](https://github.com/ymage/archiveslgbtqi/compare/v0.1.6..v0.1.7) - 2026-05-24
 
 ### 🐞 Bug Fixes
 
-- *(container)* Fix Dockerfile - ([1196045](https://github.com/ymage/archiveslgbtqi/commit/1196045b1f1b591b3f5f12682e926e158ff506b7))
+- *(container)* Fix Dockerfile - ([1196045](https://github.com/ymage/archiveslgbtqi/commit/1196045b1f1b591b3f5f12682e926e158ff506b7)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -97,11 +128,12 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.6](https://github.com/ymage/archiveslgbtqi/compare/v0.1.5..v0.1.6) - 2026-05-24
 
 ### 🚜 Refactor
 
-- *(docker)* Harden runtime user with fixed UID/GID and improve startup logging - ([ca6e4bd](https://github.com/ymage/archiveslgbtqi/commit/ca6e4bdb6371bfa52693fd51ff524ff357103c0c))
+- *(docker)* Harden runtime user with fixed UID/GID and improve startup logging - ([ca6e4bd](https://github.com/ymage/archiveslgbtqi/commit/ca6e4bdb6371bfa52693fd51ff524ff357103c0c)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -109,11 +141,12 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.5](https://github.com/ymage/archiveslgbtqi/compare/v0.1.4..v0.1.5) - 2026-05-24
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(build)* Remove docker folder from dockerignore - ([f2b7096](https://github.com/ymage/archiveslgbtqi/commit/f2b7096e1de6f3eb9eabf806acba49b149f5c335))
+- *(build)* Remove docker folder from dockerignore - ([f2b7096](https://github.com/ymage/archiveslgbtqi/commit/f2b7096e1de6f3eb9eabf806acba49b149f5c335)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -121,11 +154,12 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.4](https://github.com/ymage/archiveslgbtqi/compare/v0.1.3..v0.1.4) - 2026-05-24
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(build)* Pure Docker build with multi-stage Dockerfile and build args - ([884d97e](https://github.com/ymage/archiveslgbtqi/commit/884d97e9788d300db89d451748866b8ad412d831))
+- *(build)* Pure Docker build with multi-stage Dockerfile and build args - ([884d97e](https://github.com/ymage/archiveslgbtqi/commit/884d97e9788d300db89d451748866b8ad412d831)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -133,12 +167,13 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 1 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.3](https://github.com/ymage/archiveslgbtqi/compare/v0.1.2..v0.1.3) - 2026-05-24
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(build)* Set dynmamic for resend - ([61fc63d](https://github.com/ymage/archiveslgbtqi/commit/61fc63d39e3359d18c75b142a3c9e95ce9fc4006))
-- Update some packages minor versions - ([ea6931c](https://github.com/ymage/archiveslgbtqi/commit/ea6931cfa50d050950036a1eaaf972879e1ba764))
+- *(build)* Set dynmamic for resend - ([61fc63d](https://github.com/ymage/archiveslgbtqi/commit/61fc63d39e3359d18c75b142a3c9e95ce9fc4006)) by @ymage
+- Update some packages minor versions - ([ea6931c](https://github.com/ymage/archiveslgbtqi/commit/ea6931cfa50d050950036a1eaaf972879e1ba764)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -146,16 +181,17 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 2 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.2](https://github.com/ymage/archiveslgbtqi/compare/v0.1.1..v0.1.2) - 2026-05-24
 
 ### 🐞 Bug Fixes
 
-- *(entrypoint)* Use HOST/PORT env vars at startup time - ([a3b89f6](https://github.com/ymage/archiveslgbtqi/commit/a3b89f6fbceaf528d368728c28b3c82da61cfac9))
-- *(image)* Use alpine 3.23 - ([5b33306](https://github.com/ymage/archiveslgbtqi/commit/5b333065442813e1a90dee4b6483d3200aa5b810))
+- *(entrypoint)* Use HOST/PORT env vars at startup time - ([a3b89f6](https://github.com/ymage/archiveslgbtqi/commit/a3b89f6fbceaf528d368728c28b3c82da61cfac9)) by @ymage
+- *(image)* Use alpine 3.23 - ([5b33306](https://github.com/ymage/archiveslgbtqi/commit/5b333065442813e1a90dee4b6483d3200aa5b810)) by @ymage
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(build)* Remove useless build time env vars - ([8f470d3](https://github.com/ymage/archiveslgbtqi/commit/8f470d32ecf3bc4f633927296ac392cf099c6244))
+- *(build)* Remove useless build time env vars - ([8f470d3](https://github.com/ymage/archiveslgbtqi/commit/8f470d32ecf3bc4f633927296ac392cf099c6244)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -163,15 +199,16 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 3 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.1](https://github.com/ymage/archiveslgbtqi/compare/v0.1.0..v0.1.1) - 2026-05-24
 
 ### 📚 Documentation
 
-- *(readme)* Rewrite project documentation - ([dbdf180](https://github.com/ymage/archiveslgbtqi/commit/dbdf180bea6ea4f8d55fa761130715644c20a805))
+- *(readme)* Rewrite project documentation - ([dbdf180](https://github.com/ymage/archiveslgbtqi/commit/dbdf180bea6ea4f8d55fa761130715644c20a805)) by @ymage
 
 ### ⚙️ Miscellaneous Tasks
 
-- *(build)* Update GitHub Actions workflow - ([84718d0](https://github.com/ymage/archiveslgbtqi/commit/84718d0877b1be7756de817429a76d3563175d49))
+- *(build)* Update GitHub Actions workflow - ([84718d0](https://github.com/ymage/archiveslgbtqi/commit/84718d0877b1be7756de817429a76d3563175d49)) by @ymage
 
 ### 📊 Commit Statistics
 
@@ -179,6 +216,7 @@ All notable changes to this project will be documented in this file. See [conven
 - 0 day(s) passed between the first and last commit.
 - 2 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
+
 ## [0.1.0] - 2026-05-24
 
 ### ✨ Features
@@ -229,7 +267,7 @@ All notable changes to this project will be documented in this file. See [conven
 - Add TransitionLink component for smooth page transitions - ([2863799](https://github.com/ymage/archiveslgbtqi/commit/2863799e99f425c4e4957cede19c08f818e27251)) by @ThibautNarivelo
 - Remove EnterLayer component from page.tsx - ([4523ce1](https://github.com/ymage/archiveslgbtqi/commit/4523ce1b6e4701b789b58756b5d32a9026bc4919)) by @ThibautNarivelo
 - Add EnterLayer and ExitLayer components for transition animations - ([d1db93b](https://github.com/ymage/archiveslgbtqi/commit/d1db93bcffb52b1fd4d0561e9ee1569ecd2fd767)) by @ThibautNarivelo
-- Custom favicon - ([434793f](https://github.com/ymage/archiveslgbtqi/commit/434793f6acf605a0955a329ad23f30cbbf0ab231)) by @ThibautNarivelo
+- Cutsom favicon - ([434793f](https://github.com/ymage/archiveslgbtqi/commit/434793f6acf605a0955a329ad23f30cbbf0ab231)) by @ThibautNarivelo
 - Update "CreationArchives" fields in queries and components - ([4b4fc79](https://github.com/ymage/archiveslgbtqi/commit/4b4fc797eba7338f470fd0b4c63ccae48347b7b1)) by @ThibautNarivelo
 - Add "creative-module" type to pages schema and queries - ([ef40db3](https://github.com/ymage/archiveslgbtqi/commit/ef40db3a0b926c0c0b0781a066c9bc93c1fff3c2)) by @ThibautNarivelo
 - Add CustomHtml component for rendering custom HTML content - ([c7f5ef6](https://github.com/ymage/archiveslgbtqi/commit/c7f5ef61db67142a47a8b1648ea2cd993a3074b3)) by @ThibautNarivelo
@@ -332,6 +370,7 @@ All notable changes to this project will be documented in this file. See [conven
 - Update page component to include static page generation - ([eb28802](https://github.com/ymage/archiveslgbtqi/commit/eb2880284c8630ed42966d6e95832cf000892d80)) by @ThibautNarivelo
 - Update siteDescription field to use text type instead of array - ([f98afca](https://github.com/ymage/archiveslgbtqi/commit/f98afca473fa6b7fa7a0cb0ab126caa7e7ddae39)) by @ThibautNarivelo
 - Update Sanity types and queries to fix siteDescription bug - ([633fa8d](https://github.com/ymage/archiveslgbtqi/commit/633fa8de6f457fcaec2f95d8d4a9838e2bf9705d)) by @ThibautNarivelo
+- Rename generatMetadata to generateMetadata - ([2941c03](https://github.com/ymage/archiveslgbtqi/commit/2941c038deeb12f8dea2848356d112dec1bc0976)) by @ThibautNarivelo
 - Update NavDesktop component to improve grid layout and alignment - ([d3c8564](https://github.com/ymage/archiveslgbtqi/commit/d3c8564c396257e4839f3a50a9948978442eb7ef)) by @ThibautNarivelo
 - Add aria-labels to improve accessibility in footer and header components - ([c89b46f](https://github.com/ymage/archiveslgbtqi/commit/c89b46f02d1e127f6899ffe61b14ea0edff5b40e)) by @ThibautNarivelo
 - Improve accessibility by adding aria-labels to buttons - ([836bf5d](https://github.com/ymage/archiveslgbtqi/commit/836bf5d60cbca8661d3759be13cf3e9df65bbf03)) by @ThibautNarivelo
@@ -443,8 +482,8 @@ All notable changes to this project will be documented in this file. See [conven
 - Test new build - ([fba61aa](https://github.com/ymage/archiveslgbtqi/commit/fba61aacb26d43d6ad454968ee55ca79d81a6781)) by @TyphaineLeGales
 - Clean logs - ([47ca2fd](https://github.com/ymage/archiveslgbtqi/commit/47ca2fd1fc67da99ff515477c7beda33a8862428)) by @TyphaineLeGales
 - Test fix types - ([ec798cf](https://github.com/ymage/archiveslgbtqi/commit/ec798cf0e4303bec63a8624dffac62611ceb924e)) by @TyphaineLeGales
-- Update type blog query - ([06f8cd9](https://github.com/ymage/archiveslgbtqi/commit/06f8cd9374314b003b353f8e0b83b6f38b605dd0)) by @TyphaineLeGales
-- Update type single image - ([8c8f12e](https://github.com/ymage/archiveslgbtqi/commit/8c8f12e887368104ff0c366260fdf6d722bfdd8a)) by @TyphaineLeGales
+- Updat type blog query - ([06f8cd9](https://github.com/ymage/archiveslgbtqi/commit/06f8cd9374314b003b353f8e0b83b6f38b605dd0)) by @TyphaineLeGales
+- Updat type single image - ([8c8f12e](https://github.com/ymage/archiveslgbtqi/commit/8c8f12e887368104ff0c366260fdf6d722bfdd8a)) by @TyphaineLeGales
 - Clean install - ([f818c47](https://github.com/ymage/archiveslgbtqi/commit/f818c476a8f3dfd4b4757c8467e8bd154c80ac0a)) by @TyphaineLeGales
 - Type props to prevent build fail - ([fdb6e4c](https://github.com/ymage/archiveslgbtqi/commit/fdb6e4c88537e84c9f349f76d78104e263506a95)) by @TyphaineLeGales
 - Regenerate package.json.lock - ([b5c8298](https://github.com/ymage/archiveslgbtqi/commit/b5c8298894ca3120f89d12e87b960db2c9e1e914)) by @TyphaineLeGales
@@ -483,15 +522,22 @@ All notable changes to this project will be documented in this file. See [conven
 
 ### 📊 Commit Statistics
 
-- 353 commit(s) contributed to the release.
+- 354 commit(s) contributed to the release.
 - 606 day(s) passed between the first and last commit.
-- 353 commit(s) parsed as conventional.
+- 354 commit(s) parsed as conventional.
 - 2 linked issue(s) detected in commits.
   - [#243](https://github.com/ymage/archiveslgbtqi/issues/243) (referenced 2 time(s))
   - [#244](https://github.com/ymage/archiveslgbtqi/issues/244) (referenced 2 time(s))
 
+
 ### 🫂 New Contributors ❤️
 
+* @ThibautNarivelo made their first contribution
 * @TyphaineLeGales made their first contribution
 * @ymage made their first contribution
+* @ymage made their first contribution
 * @ThibautNarivelo made their first contribution
+* @TyphaineLeGales made their first contribution
+* @ymage made their first contribution
+
+<!-- generated by git-cliff -->
