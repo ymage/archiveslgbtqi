@@ -26,8 +26,8 @@ RUN npm run build
 RUN npm prune --omit=dev
 RUN mkdir -p /app && cp -r .next node_modules next.config.js /app/
 
-COPY docker/docker-entrypoint.sh /tmp/bin/entrypoint.sh
-RUN chmod 0755 /tmp/bin/entrypoint.sh
+COPY docker/docker-entrypoint.sh /tmp/entrypoint.sh
+RUN chmod 0755 /tmp/entrypoint.sh
 
 # --- Runtime ---
 FROM base
@@ -47,7 +47,7 @@ RUN apk add --no-cache --upgrade \
             --gecos app \
             app
 
-COPY --from=builder /tmp/bin/entrypoint.sh /usr/local/bin/entrypoint.sh
+COPY --from=builder /tmp/entrypoint.sh /usr/local/bin/entrypoint.sh
 
 WORKDIR /var/www
 COPY --chown=app:app --from=builder /app/ .
