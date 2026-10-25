@@ -128,7 +128,7 @@ docker run -p 3000:3000 \
   archives-lgbtqi
 ```
 
-L'image est construite en multi-stage : Node.js compile l'application, puis les artefacts (`.next`, `node_modules`, `next.config.js`) sont copiés directement dans l'image finale sans passer par une archive. L'image utilise un utilisateur non-root (`app`, UID/GID 10001) et expose le port `3000`. Les variables `HOST` et `PORT` sont prises en charge par le point d'entrée (`docker/docker-entrypoint.sh`).
+L'image est construite en multi-stage : Node.js compile l'application, puis les artefacts (`.next`, `node_modules`, `next.config.js`) sont copiés directement dans l'image finale sans passer par une archive. L'image utilise un utilisateur non-root (`app`, UID/GID 10001) et expose le port `3000`. Le contexte de build exclut `docs/`, `tests/`, `node_modules`, `.next`, `.env*` et les fichiers Markdown (`.dockerignore`). Les variables `HOST` et `PORT` sont prises en charge par le point d'entrée (`docker/docker-entrypoint.sh`).
 
 ## CI/CD
 

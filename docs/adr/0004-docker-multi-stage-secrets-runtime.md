@@ -11,6 +11,7 @@ Le déploiement se fait par conteneur. Le build ne doit pas dépendre de l'envir
 
 - `docker/Dockerfile` en 3 étapes (`deps` → `builder` → runtime) sur `node:24-alpine`, aligné avec `mise.toml` (Node 24).
 - Build-args limités à `NEXT_PUBLIC_SANITY_DATASET` et `NEXT_PUBLIC_SANITY_PROJECT_ID` (intégrés au bundle). Tous les secrets (`SANITY_API_READ_TOKEN`, `RESEND_API_KEY`, `BREVO_*`) sont fournis au runtime.
+- Contexte de build restreint par `.dockerignore` : `.git`, `.github`, `docs/`, `tests/`, `node_modules`, `.next`, `.env*` et `*.md` ne sont pas envoyés au démon Docker.
 - `npm prune --omit=dev` puis copie de `.next`, `node_modules` et `next.config.js` dans l'image finale.
 - Utilisateur non-root `app` (UID/GID 10001), `HOST`/`PORT` lus par `docker/docker-entrypoint.sh` (`npx next start`).
 - CI GitHub Actions (`.github/workflows/build.yml`) : build multi-arch sur `main` et sur les tags `v*` ; push GHCR, attestation de provenance et purge des anciennes images **uniquement pour les tags**.

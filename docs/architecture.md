@@ -29,7 +29,8 @@ Navigateur ──► Next.js (conteneur Node 24)
 | `sanity.config.ts`, `sanity.cli.ts` | Configuration du Studio / de la CLI |
 | `sanity.types.ts`, `schema.json` | Générés par `npm run typegen` — ne pas éditer à la main |
 | `tests/` | `unit/` (Vitest), `e2e/` (Playwright) |
-| `docker/` | `Dockerfile`, `docker-entrypoint.sh` |
+| `docker/` | `Dockerfile`, `docker-entrypoint.sh` (copié en `/usr/local/bin/entrypoint.sh`) |
+| `.dockerignore` | exclut `docs/`, `tests/`, `*.md`, `.env*`… du contexte de build |
 
 ## Routes
 
