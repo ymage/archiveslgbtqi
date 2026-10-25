@@ -48,3 +48,5 @@ README-copy.md
 # Exclude Claude
 .claude/
 .planning/
+/test-results/
+/playwright-report/
