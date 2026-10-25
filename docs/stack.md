@@ -17,7 +17,7 @@ Versions résolues au 2026-10-25 (`package.json` / `package-lock.json`). Node.js
 | Animations | gsap, @gsap/react | 3.15 / 2.1 | |
 | Formulaires | react-hook-form, @hookform/resolvers | 7.91 / 5.9 | |
 | Validation | zod | 4.6 | formulaires, e-mail newsletter |
-| Courriel | resend, @react-email/components | 6.34 / 1.0 | contact |
+| Courriel | resend, react-email | 6.34 / 6.11 | contact (gabarit React) |
 | HTTP | axios | 1.20 | appels Brevo |
 | Réseau | cacheable-lookup | 7.0 | cache DNS du client serveur |
 | Notifications | sonner | 2.0 | toasts |
