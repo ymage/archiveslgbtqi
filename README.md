@@ -6,12 +6,15 @@ Site web du Centre Archives LGBTQI+ Paris, développé avec [Next.js](https://ne
 
 ## Stack technique
 
-- **Framework** : Next.js 14+ (App Router)
-- **CMS** : Sanity v3
-- **Styling** : Tailwind CSS
-- **Animations** : GSAP, Lenis (smooth scroll)
-- **Emails** : Resend, Nodemailer, Brevo (newsletter)
+- **Framework** : Next.js 16 (App Router), React 19
+- **CMS** : Sanity 6 (Studio embarqué sur `/studio`)
+- **Styling** : Tailwind CSS 4
+- **Animations** : GSAP
+- **Emails** : Resend (formulaire de contact), Brevo (newsletter)
+- **Tests** : Vitest, Playwright
 - **Déploiement** : Docker, GitHub Container Registry
+
+Documentation technique détaillée (architecture, pile, conventions, ADR) : [`docs/`](./docs/README.md).
 
 ## Prérequis
 
@@ -42,9 +45,10 @@ NEXT_PUBLIC_SANITY_DATASET=production
 
 ```env
 NEXT_PUBLIC_SANITY_API_VERSION=2024-02-28
+NEXT_PUBLIC_SITE_URL=https://exemple.fr
 ```
 
-> `NEXT_PUBLIC_SANITY_API_VERSION` possède une valeur par défaut (`2024-02-28`) ; elle n'est nécessaire que si vous souhaitez cibler une version d'API Sanity différente.
+> `NEXT_PUBLIC_SANITY_API_VERSION` possède une valeur par défaut (`2024-02-28`) ; elle n'est nécessaire que si vous souhaitez cibler une version d'API Sanity différente. `NEXT_PUBLIC_SITE_URL` est l'URL complète du site (avec `https://`), utilisée par `robots.txt` et `sitemap.xml` (défaut : `http://localhost:3000`).
 
 ### Variables d'exécution (requis au démarrage du conteneur)
 
@@ -88,6 +92,9 @@ Le projet utilise deux clients Sanity distincts selon le contexte d'exécution :
 | `npm run build` | Génère le build de production (inclut `typegen`) |
 | `npm run start` | Démarre le serveur en production |
 | `npm run lint` | Vérifie le code avec ESLint |
+| `npm test` | Lance les tests unitaires (Vitest) |
+| `npm run test:watch` | Tests unitaires en mode watch |
+| `npm run test:e2e` | Tests e2e Playwright (build + serveur ; requiert les variables Sanity) |
 | `npm run typegen` | Extrait le schéma Sanity et génère les types |
 
 ## Build Docker
@@ -128,8 +135,8 @@ L'image est construite en multi-stage : Node.js compile l'application, puis les 
 Le déploiement est automatisé via GitHub Actions (`.github/workflows/build.yml`) :
 
 - Déclenchement uniquement sur la branche `main` ou les tags de version (`v*`)
-- Build multi-arch de l'image Docker avec les arguments de build pour les variables Sanity
-- Push sur GitHub Container Registry
+- Build multi-arch de l'image Docker avec les arguments de build pour les variables Sanity (sans lint ni tests)
+- Push sur GitHub Container Registry (tags uniquement)
 - Génération d'attestations de build (uniquement pour les releases taguées)
 - Nettoyage automatique des anciennes images (uniquement pour les releases taguées)
 - Cache Docker via GitHub Actions Cache
