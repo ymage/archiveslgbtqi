@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.15](https://github.com/ymage/archiveslgbtqi/compare/v0.1.14..v0.1.15) - 2026-10-25
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Replace deprecated @react-email/components with react-email - ([6bd365c](https://github.com/ymage/archiveslgbtqi/commit/6bd365c172e33b42e2342b67e3fc05ec397b1edf)) by @ymage
+
+### 📊 Commit Statistics
+
+- 1 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 1 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+
 ## [0.1.14](https://github.com/ymage/archiveslgbtqi/compare/v0.1.13..v0.1.14) - 2026-10-25
 
 ### 🐞 Bug Fixes
