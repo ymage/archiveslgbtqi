@@ -2,6 +2,35 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.14](https://github.com/ymage/archiveslgbtqi/compare/v0.1.13..v0.1.14) - 2026-10-25
+
+### 🐞 Bug Fixes
+
+- *(newsletter)* Drop deprecated edge runtime - ([ce24d08](https://github.com/ymage/archiveslgbtqi/commit/ce24d08a5ac726051efc9aac3189fc47383c2f18)) by @ymage
+
+### 📚 Documentation
+
+- Document docker build context exclusions - ([9eb5a6f](https://github.com/ymage/archiveslgbtqi/commit/9eb5a6f8917abef0e710a403a7d970a3739f35c8)) by @ymage
+- Add technical documentation (architecture, stack, guidelines, ADRs) and refresh README - ([10370a7](https://github.com/ymage/archiveslgbtqi/commit/10370a72259e777d1484565148d89ac481d4ee05)) by @ymage
+
+### 🧪 Testing
+
+- Add vitest unit tests and playwright e2e smoke tests - ([9a31f25](https://github.com/ymage/archiveslgbtqi/commit/9a31f259f6c3e1ac2491225c026c3da0f6fe390a)) by @ymage
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Bump all dependencies to latest - ([5254457](https://github.com/ymage/archiveslgbtqi/commit/5254457f4c52a1d7a3e4111555ab22fd6e29579e)) by @ymage
+- *(docker)* Exclude docs and tests from build context, simplify entrypoint staging path - ([007e2d4](https://github.com/ymage/archiveslgbtqi/commit/007e2d464e4e27e1c69cda92bfee1ca14fa5615d)) by @ymage
+- Switch package to ESM to drop MODULE_TYPELESS_PACKAGE_JSON warning - ([348112b](https://github.com/ymage/archiveslgbtqi/commit/348112bf587d5eab0bbc41485e45465f96a5d7e6)) by @ymage
+
+### 📊 Commit Statistics
+
+- 7 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 7 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 4 day(s) passed between releases.
+
 ## [0.1.13](https://github.com/ymage/archiveslgbtqi/compare/v0.1.12..v0.1.13) - 2026-10-21
 
 ### 🐞 Bug Fixes
