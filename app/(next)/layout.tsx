@@ -1,7 +1,7 @@
 import "../globals.css";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { VisualEditing } from "next-sanity";
+import { VisualEditing } from "next-sanity/visual-editing";
 
 import { draftMode } from "next/headers";
 import { Suspense } from "react";
@@ -89,19 +89,20 @@ export async function generateMetadata() {
   } satisfies Metadata;
 }
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { isEnabled } = await draftMode();
   return (
     <html
       lang="fr"
       className={`${cityBurn.variable} ${jetBrains.variable} ${tanker.variable} bg-white`}
     >
       <body>
-        <section className="flex min-h-screen flex-grow flex-col selection:bg-pink-arch">
-          {draftMode().isEnabled && <BannerAlert />}
+        <section className="flex min-h-screen grow flex-col selection:bg-pink-arch">
+          {isEnabled && <BannerAlert />}
           <IntroAnimation />
           <Suspense>
             <Header />
@@ -114,7 +115,7 @@ export default function RootLayout({
           </Suspense>
           <CookieBanner />
         </section>
-        {draftMode().isEnabled && <VisualEditing />}
+        {isEnabled && <VisualEditing />}
         <SpeedInsights />
       </body>
     </html>

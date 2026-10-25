@@ -60,9 +60,9 @@ export default function SecondSection({ multiBlocks }: Props) {
                         height={300}
                         className="absolute inset-0 z-0 h-full w-full object-cover"
                       />
-                      <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-20 transition-[background] duration-300 ease-tamisitée group-hover:bg-opacity-10" />
+                      <div className="absolute inset-0 z-0 h-full w-full bg-black/20 transition-[background] duration-300 ease-tamisee group-hover:bg-black/10" />
                       <div className="] absolute bottom-[1rem] left-[1rem]">
-                        <h2 className="heroTitle text-white-primary transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                        <h2 className="heroTitle text-white-primary transition-colors duration-300 ease-tamisee group-hover:text-pink-arch">
                           {block.title === "La plateforme d’archives orales" ? (
                             <>
                               La plateforme <br /> d'archives orales
@@ -73,7 +73,7 @@ export default function SecondSection({ multiBlocks }: Props) {
                         </h2>
                       </div>
                     </div>
-                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white transition-colors duration-300 ease-tamisee group-hover:text-pink-arch">
                       <div className="flex-1 bg-black p-[1rem]">
                         <p className="heroParagraph">{block.paragraph}</p>
                       </div>
@@ -96,9 +96,9 @@ export default function SecondSection({ multiBlocks }: Props) {
                         height={300}
                         className="absolute inset-0 z-0 h-full w-full object-cover"
                       />
-                      <div className="absolute inset-0 z-0 h-full w-full bg-black bg-opacity-20 transition-[background] duration-300 ease-tamisitée group-hover:bg-opacity-10" />
+                      <div className="absolute inset-0 z-0 h-full w-full bg-black/20 transition-[background] duration-300 ease-tamisee group-hover:bg-black/10" />
                       <div className="] absolute bottom-[1rem] left-[1rem]">
-                        <h2 className="heroTitle text-white-primary transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                        <h2 className="heroTitle text-white-primary transition-colors duration-300 ease-tamisee group-hover:text-pink-arch">
                           {block.title === "La plateforme d’archives orales" ? (
                             <>
                               La plateforme <br /> d'archives orales
@@ -109,7 +109,7 @@ export default function SecondSection({ multiBlocks }: Props) {
                         </h2>
                       </div>
                     </div>
-                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white transition-colors duration-300 ease-tamisitée group-hover:text-pink-arch">
+                    <div className="relative flex min-h-[25%] flex-col items-end justify-start text-white transition-colors duration-300 ease-tamisee group-hover:text-pink-arch">
                       <div className="flex-1 bg-black p-[1rem]">
                         <p className="heroParagraph">{block.paragraph}</p>
                       </div>

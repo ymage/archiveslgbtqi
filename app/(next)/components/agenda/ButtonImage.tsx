@@ -65,7 +65,7 @@ export default function ButtonImage({ event, status }: ButtonImageProps) {
         onClick={handleImageClick}
         className="group relative aspect-square h-full w-full overflow-hidden lg:h-[400px] lg:w-[400px]"
       >
-        <div className="absolute inset-0 bg-black bg-opacity-0 transition-[background] duration-300 group-hover:bg-opacity-20"></div>
+        <div className="absolute inset-0 bg-black/0 transition-[background] duration-300 group-hover:bg-black/20"></div>
         <Image
           src={event.image?.imageUrl || ""}
           alt={event.image?.alt || ""}

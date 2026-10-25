@@ -62,7 +62,7 @@ export default function NavDesktop({ settings }: NavLinkProps) {
               "absolute inset-y-0 my-auto aspect-square h-[110px] w-[110px] mix-blend-multiply",
               pathname === "/"
                 ? ""
-                : "transition-colors duration-200 ease-tamisitée hover:bg-pink-arch",
+                : "transition-colors duration-200 ease-tamisee hover:bg-pink-arch",
             )}
           ></div>
         </HeaderTransitionLink>

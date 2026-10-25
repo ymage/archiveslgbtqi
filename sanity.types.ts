@@ -12,38 +12,40 @@
  * ---------------------------------------------------------------------------------
  */
 
+export declare const internalGroqTypeReferenceTo: unique symbol;
+
 // Source: schema.json
-export type SanityImagePaletteSwatch = {
-  _type: "sanity.imagePaletteSwatch";
-  background?: string;
-  foreground?: string;
-  population?: number;
+export type EventsReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "events";
+};
+
+export type Event = {
+  isDisplayed?: boolean;
   title?: string;
+  events?: Array<
+    {
+      _key: string;
+    } & EventsReference
+  >;
+  ctaToEvents?: string;
 };
 
-export type SanityImagePalette = {
-  _type: "sanity.imagePalette";
-  darkMuted?: SanityImagePaletteSwatch;
-  lightVibrant?: SanityImagePaletteSwatch;
-  darkVibrant?: SanityImagePaletteSwatch;
-  vibrant?: SanityImagePaletteSwatch;
-  dominant?: SanityImagePaletteSwatch;
-  lightMuted?: SanityImagePaletteSwatch;
-  muted?: SanityImagePaletteSwatch;
+export type SanityImageAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
 };
 
-export type SanityImageDimensions = {
-  _type: "sanity.imageDimensions";
-  height?: number;
-  width?: number;
-  aspectRatio?: number;
-};
-
-export type Geopoint = {
-  _type: "geopoint";
-  lat?: number;
-  lng?: number;
-  alt?: number;
+export type ObjectImage = {
+  asset?: SanityImageAssetReference;
+  media?: unknown; // Unable to locate the referenced type "image.media" in schema
+  hotspot?: SanityImageHotspot;
+  crop?: SanityImageCrop;
+  _type: "image";
 };
 
 export type ListeDesFondsContent = {
@@ -66,6 +68,13 @@ export type ListeDesFondsContent = {
   >;
 };
 
+export type SanityFileAssetReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
+};
+
 export type CustomHtml = {
   _type: "custom-html";
   codeTitle?: string;
@@ -74,12 +83,8 @@ export type CustomHtml = {
   fileGroup?: Array<{
     title?: string;
     files?: Array<{
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-      };
+      asset?: SanityFileAssetReference;
+      media?: unknown;
       _type: "file";
       _key: string;
     }>;
@@ -134,18 +139,7 @@ export type CreationArchives = {
 
 export type LastEvent = {
   _type: "lastEvent";
-  event?: {
-    isDisplayed?: boolean;
-    title?: string;
-    events?: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "events";
-    }>;
-    ctaToEvents?: string;
-  };
+  event?: Event;
 };
 
 export type ContactForm = {
@@ -155,16 +149,18 @@ export type ContactForm = {
   recipient?: string;
 };
 
+export type PagesReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "pages";
+};
+
 export type Link = {
   _type: "link";
   label?: string;
   type?: "internal" | "external" | "mail";
-  internal?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "pages";
-  };
+  internal?: PagesReference;
   external?: string;
   mail?: string;
 };
@@ -173,17 +169,7 @@ export type MultiImages = {
   _type: "multi-images";
   title?: string;
   images?: Array<{
-    image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    };
+    image?: ObjectImage;
     credits?: string;
     alt?: string;
     _key: string;
@@ -193,12 +179,8 @@ export type MultiImages = {
 export type SingleImage = {
   _type: "single-image";
   image?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-    };
+    asset?: SanityImageAssetReference;
+    media?: unknown;
     hotspot?: SanityImageHotspot;
     crop?: SanityImageCrop;
     _type: "image";
@@ -211,12 +193,8 @@ export type DocumentFile = {
   _type: "document-file";
   title?: string;
   file?: {
-    asset?: {
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      [internalGroqTypeReferenceTo]?: "sanity.fileAsset";
-    };
+    asset?: SanityFileAssetReference;
+    media?: unknown;
     _type: "file";
   };
 };
@@ -325,14 +303,7 @@ export type Blogs = {
             _key: string;
           }>;
           style?:
-            | "normal"
-            | "h1"
-            | "h2"
-            | "h3"
-            | "h4"
-            | "h5"
-            | "h6"
-            | "blockquote";
+            "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
           listItem?: "bullet" | "number";
           markDefs?: Array<{
             href?: string;
@@ -348,12 +319,8 @@ export type Blogs = {
       }
     | {
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
+          media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
@@ -366,12 +333,8 @@ export type Blogs = {
     | {
         multiImages?: Array<{
           image?: {
-            asset?: {
-              _ref: string;
-              _type: "reference";
-              _weak?: boolean;
-              [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-            };
+            asset?: SanityImageAssetReference;
+            media?: unknown;
             hotspot?: SanityImageHotspot;
             crop?: SanityImageCrop;
             _type: "image";
@@ -385,18 +348,29 @@ export type Blogs = {
     | {
         label?: string;
         type?: "internal" | "external" | "mail";
-        internal?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
-        };
+        internal?: PagesReference;
         external?: string;
         mail?: string;
         _type: "links";
         _key: string;
       }
   >;
+};
+
+export type SanityImageCrop = {
+  _type: "sanity.imageCrop";
+  top?: number;
+  bottom?: number;
+  left?: number;
+  right?: number;
+};
+
+export type SanityImageHotspot = {
+  _type: "sanity.imageHotspot";
+  x?: number;
+  y?: number;
+  height?: number;
+  width?: number;
 };
 
 export type Events = {
@@ -417,12 +391,8 @@ export type Events = {
   eventLocation?: string;
   eventImage?: {
     image?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       _type: "image";
@@ -444,12 +414,8 @@ export type Homepage = {
       paragraph?: string;
       image?: {
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
+          media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
@@ -458,12 +424,7 @@ export type Homepage = {
       };
       cta?: {
         ctaLabel?: string;
-        ctaLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
-        };
+        ctaLink?: PagesReference;
       };
       _key: string;
     }>;
@@ -475,12 +436,8 @@ export type Homepage = {
       paragraph?: string;
       image?: {
         image?: {
-          asset?: {
-            _ref: string;
-            _type: "reference";
-            _weak?: boolean;
-            [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-          };
+          asset?: SanityImageAssetReference;
+          media?: unknown;
           hotspot?: SanityImageHotspot;
           crop?: SanityImageCrop;
           _type: "image";
@@ -489,12 +446,7 @@ export type Homepage = {
       };
       cta?: {
         ctaLabel?: string;
-        ctaLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
-        };
+        ctaLink?: PagesReference;
         ctaScrollTo?: string;
       };
       _key: string;
@@ -527,20 +479,13 @@ export type Homepage = {
     upcomingEventsTitle?: string;
     upcomingEventsCTA?: {
       eventsCTATitle?: string;
-      eventsCTA?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "pages";
-      };
+      eventsCTA?: PagesReference;
     };
-    upcomingEvents?: Array<{
-      _ref: string;
-      _type: "reference";
-      _weak?: boolean;
-      _key: string;
-      [internalGroqTypeReferenceTo]?: "events";
-    }>;
+    upcomingEvents?: Array<
+      {
+        _key: string;
+      } & EventsReference
+    >;
     upcomingEventsCTATitle?: string;
   };
   marqueeCTA?: {
@@ -560,12 +505,8 @@ export type Settings = {
     siteTitle?: string;
     siteDescription?: string;
     ogImage?: {
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
@@ -575,12 +516,8 @@ export type Settings = {
   header?: {
     logo?: {
       logoImage?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset?: SanityImageAssetReference;
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -590,12 +527,7 @@ export type Settings = {
     headerLinks?: Array<{
       type?: "internal" | "external";
       linkPosition?: "left" | "right";
-      internalLink?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "pages";
-      };
+      internalLink?: PagesReference;
       externalLink?: {
         title?: string;
         url?: string;
@@ -605,12 +537,8 @@ export type Settings = {
   };
   footer?: {
     partnerLogos?: Array<{
-      asset?: {
-        _ref: string;
-        _type: "reference";
-        _weak?: boolean;
-        [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-      };
+      asset?: SanityImageAssetReference;
+      media?: unknown;
       hotspot?: SanityImageHotspot;
       crop?: SanityImageCrop;
       alt?: string;
@@ -619,12 +547,8 @@ export type Settings = {
     }>;
     logo?: {
       logoImage?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset?: SanityImageAssetReference;
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -641,14 +565,7 @@ export type Settings = {
           _key: string;
         }>;
         style?:
-          | "normal"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "blockquote";
+          "normal" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "blockquote";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -665,12 +582,8 @@ export type Settings = {
       socialName?: string;
       socialLink?: string;
       socialLinkImage?: {
-        asset?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
-        };
+        asset?: SanityImageAssetReference;
+        media?: unknown;
         hotspot?: SanityImageHotspot;
         crop?: SanityImageCrop;
         _type: "image";
@@ -682,12 +595,7 @@ export type Settings = {
       groupName?: string;
       modules?: Array<{
         type?: "internal" | "external" | "text";
-        internalLink?: {
-          _ref: string;
-          _type: "reference";
-          _weak?: boolean;
-          [internalGroqTypeReferenceTo]?: "pages";
-        };
+        internalLink?: PagesReference;
         externalLink?: {
           title?: string;
           url?: string;
@@ -738,6 +646,84 @@ export type Pages = {
   >;
 };
 
+export type Code = {
+  _type: "code";
+  language?: string;
+  filename?: string;
+  code?: string;
+  highlightedLines?: Array<number>;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type MediaFolderReference = {
+  _ref: string;
+  _type: "reference";
+  _weak?: boolean;
+  [internalGroqTypeReferenceTo]?: "media.folder";
+};
+
+export type MediaFolder = {
+  _id: string;
+  _type: "media.folder";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  parent?: MediaFolderReference;
+};
+
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type SanityImagePaletteSwatch = {
+  _type: "sanity.imagePaletteSwatch";
+  background?: string;
+  foreground?: string;
+  population?: number;
+  title?: string;
+};
+
+export type SanityImagePalette = {
+  _type: "sanity.imagePalette";
+  darkMuted?: SanityImagePaletteSwatch;
+  lightVibrant?: SanityImagePaletteSwatch;
+  darkVibrant?: SanityImagePaletteSwatch;
+  vibrant?: SanityImagePaletteSwatch;
+  dominant?: SanityImagePaletteSwatch;
+  lightMuted?: SanityImagePaletteSwatch;
+  muted?: SanityImagePaletteSwatch;
+};
+
+export type SanityImageDimensions = {
+  _type: "sanity.imageDimensions";
+  height?: number;
+  width?: number;
+  aspectRatio?: number;
+};
+
+export type SanityImageMetadata = {
+  _type: "sanity.imageMetadata";
+  location?: Geopoint;
+  dimensions?: SanityImageDimensions;
+  palette?: SanityImagePalette;
+  lqip?: string;
+  blurHash?: string;
+  thumbHash?: string;
+  hasAlpha?: boolean;
+  isOpaque?: boolean;
+};
+
 export type SanityFileAsset = {
   _id: string;
   _type: "sanity.fileAsset";
@@ -760,20 +746,11 @@ export type SanityFileAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityImageCrop = {
-  _type: "sanity.imageCrop";
-  top?: number;
-  bottom?: number;
-  left?: number;
-  right?: number;
-};
-
-export type SanityImageHotspot = {
-  _type: "sanity.imageHotspot";
-  x?: number;
-  y?: number;
-  height?: number;
-  width?: number;
+export type SanityAssetSourceData = {
+  _type: "sanity.assetSourceData";
+  name?: string;
+  id?: string;
+  url?: string;
 };
 
 export type SanityImageAsset = {
@@ -799,57 +776,25 @@ export type SanityImageAsset = {
   source?: SanityAssetSourceData;
 };
 
-export type SanityAssetSourceData = {
-  _type: "sanity.assetSourceData";
-  name?: string;
-  id?: string;
-  url?: string;
-};
-
-export type SanityImageMetadata = {
-  _type: "sanity.imageMetadata";
-  location?: Geopoint;
-  dimensions?: SanityImageDimensions;
-  palette?: SanityImagePalette;
-  lqip?: string;
-  blurHash?: string;
-  hasAlpha?: boolean;
-  isOpaque?: boolean;
-};
-
-export type MediaTag = {
-  _id: string;
-  _type: "media.tag";
-  _createdAt: string;
-  _updatedAt: string;
-  _rev: string;
-  name?: Slug;
-};
-
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
-};
-
-export type Code = {
-  _type: "code";
-  language?: string;
-  filename?: string;
-  code?: string;
-  highlightedLines?: Array<number>;
+export type Geopoint = {
+  _type: "geopoint";
+  lat?: number;
+  lng?: number;
+  alt?: number;
 };
 
 export type AllSanitySchemaTypes =
-  | SanityImagePaletteSwatch
-  | SanityImagePalette
-  | SanityImageDimensions
-  | Geopoint
+  | EventsReference
+  | Event
+  | SanityImageAssetReference
+  | ObjectImage
   | ListeDesFondsContent
+  | SanityFileAssetReference
   | CustomHtml
   | CreationArchives
   | LastEvent
   | ContactForm
+  | PagesReference
   | Link
   | MultiImages
   | SingleImage
@@ -858,21 +803,34 @@ export type AllSanitySchemaTypes =
   | Richtext
   | Content
   | Blogs
+  | SanityImageCrop
+  | SanityImageHotspot
   | Events
   | Homepage
   | Settings
   | Pages
-  | SanityFileAsset
-  | SanityImageCrop
-  | SanityImageHotspot
-  | SanityImageAsset
-  | SanityAssetSourceData
-  | SanityImageMetadata
-  | MediaTag
+  | Code
   | Slug
-  | Code;
-export declare const internalGroqTypeReferenceTo: unique symbol;
-// Source: ./sanity/lib/queries.ts
+  | MediaFolderReference
+  | MediaFolder
+  | MediaTag
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageMetadata
+  | SanityFileAsset
+  | SanityAssetSourceData
+  | SanityImageAsset
+  | Geopoint;
+
+// Source: app/(next)/[slug]/page.tsx
+// Variable: pageSlugs
+// Query: *[_type == "pages"]{slug}
+export type PageSlugsResult = Array<{
+  slug: Slug | null;
+}>;
+
+// Source: sanity/lib/queries.ts
 // Variable: settingsQuery
 // Query: *[_type == "settings"][0] {  "globalSettings": {    "siteTitle": globalSettings.siteTitle,    "siteDescription": globalSettings.siteDescription,    "ogImage": globalSettings.ogImage.asset->url,    "altText": globalSettings.ogImage.alt,  },  "header": header{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    "links": headerLinks[] {      _key,      type,      linkPosition,      "internalLinkDetails": internalLink-> {        _id,        _key,        _type,        title,        "slug": slug.current      },      "externalLinkDetails": {        _key,        "title": externalLink.title,        "url": externalLink.url      }    }  },  "footer": footer{    "logo": logo {      "logoImage": logoImage.asset->url,      alt,    },    partnerLogos[] {      "logoImage": asset->url,      alt    },        "addressGroup": addressGroup {      addressTitle,      addressContent[]{        ...,      },      mailAddress,    },    "socialGroup": socialGroup[] {      socialName,      socialLink,      socialLinkImage{        "imageUrl": asset->url,        alt,      },    },    "footerLinks": footerLinks[]{      _key,      groupName,      modules[]{        type,        "internalLink": internalLink->{          title,          "slug": slug.current        },        externalLink{          title,          url        },        text      }  }  }}
 export type SettingsQueryResult = {
@@ -924,14 +882,7 @@ export type SettingsQueryResult = {
           _key: string;
         }>;
         style?:
-          | "blockquote"
-          | "h1"
-          | "h2"
-          | "h3"
-          | "h4"
-          | "h5"
-          | "h6"
-          | "normal";
+          "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
         listItem?: "bullet" | "number";
         markDefs?: Array<{
           href?: string;
@@ -970,6 +921,8 @@ export type SettingsQueryResult = {
     }> | null;
   } | null;
 } | null;
+
+// Source: sanity/lib/queries.ts
 // Variable: homepageQuery
 // Query: *[_type == "homepage"][0] {  _key,  _id,  _type,  "heroVisibility": hero.heroVisibility,  "hero": hero.hero[]{        ...,    _id,    _key,    "image": image{      "imageUrl": image.asset->url,      alt,    },    cta {      ctaLabel,      ctaLink->{        _type,        "slug": slug.current      }    }  },  "secondPartVisibility": secondPart.secondPartVisibility,  "secondPart": secondPart.block[]{     ...,  _id,  _key,  "image": image{    "imageUrl": image.asset->url,    alt,  },  cta {    ctaLabel,    ctaLink->{      _type,      "slug": slug.current    },    ctaScrollTo  },  },  introText {    introTextVisibility,    introTextContent[]{      ...,  },    newsletterTextContent  },  "upcomingEventsSection": upcomingEventsSection {    upcomingEventsSectionVisibility,    upcomingEventsTitle,    upcomingEventsCTA{      eventsCTATitle,      eventsCTA->,    },    "upcomingEvents": upcomingEvents[]-> {  _id,  eventType,  eventTitle,  slug,  eventDate,  eventDescription2,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },},    upcomingEventsCTATitle,  },  marqueeCTA {    marqueeCTAVisibility,    marqueeContent,    marqueeLink,  } }
 export type HomepageQueryResult = {
@@ -1056,14 +1009,7 @@ export type HomepageQueryResult = {
             _key: string;
           }>;
           style?:
-            | "blockquote"
-            | "h1"
-            | "h2"
-            | "h3"
-            | "h4"
-            | "h5"
-            | "h6"
-            | "normal";
+            "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
           listItem?: "bullet" | "number";
           markDefs?: Array<{
             href?: string;
@@ -1111,6 +1057,8 @@ export type HomepageQueryResult = {
     marqueeLink: string | null;
   } | null;
 } | null;
+
+// Source: sanity/lib/queries.ts
 // Variable: eventQuery
 // Query: *[_type == "events" && slug.current == $event][0]{  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription2,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type EventQueryResult = {
@@ -1131,6 +1079,8 @@ export type EventQueryResult = {
     alt: string | null;
   } | null;
 } | null;
+
+// Source: sanity/lib/queries.ts
 // Variable: pastEventQuery
 // Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate <= now()] | order(eventDate.eventStartDate desc) [0..3] {  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription2,  eventLocation,  "image": eventImage{      "imageUrl": image.asset->url,      alt,    },}
 export type PastEventQueryResult = Array<{
@@ -1151,6 +1101,8 @@ export type PastEventQueryResult = Array<{
     alt: string | null;
   } | null;
 }>;
+
+// Source: sanity/lib/queries.ts
 // Variable: lastEventQuery
 // Query: *[_type == "events" && defined(eventDate) && eventDate.eventStartDate >= now()] | order(eventDate.eventStartDate desc) {  _id,  eventType,  eventTitle,  slug,  eventEntrance,  eventDate,  eventDescription2,  eventLocation,  "image": eventImage{    "imageUrl": image.asset->url,    alt,  },}
 export type LastEventQueryResult = Array<{
@@ -1171,6 +1123,8 @@ export type LastEventQueryResult = Array<{
     alt: string | null;
   } | null;
 }>;
+
+// Source: sanity/lib/queries.ts
 // Variable: blogsQuery
 // Query: *[_type == "blogs"  && year >= $minYear && year <= $maxYear] | order(year desc)  {  _id,  title,  subTitle,  author,  year,  date,  contentBlock[]{    _type == "richText" => {      "richText": text    },    _type == "singleImage" => {      "singleImage": {        "imageUrl": image.asset->url,        alt,        credits      }    },    _type == "multiImagesObject" => {      "multiImagesObject": multiImages[]{        "imageUrl": image.asset->url,        alt      }    },    _type == "links" => {      "links": {        label,        type,        "internalLink": internal->title,        external,        mail      }    }  }}
 export type BlogsQueryResult = Array<{
@@ -1205,14 +1159,7 @@ export type BlogsQueryResult = Array<{
             _key: string;
           }>;
           style?:
-            | "blockquote"
-            | "h1"
-            | "h2"
-            | "h3"
-            | "h4"
-            | "h5"
-            | "h6"
-            | "normal";
+            "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
           listItem?: "bullet" | "number";
           markDefs?: Array<{
             href?: string;
@@ -1233,12 +1180,16 @@ export type BlogsQueryResult = Array<{
       }
   > | null;
 }>;
+
+// Source: sanity/lib/queries.ts
 // Variable: pagesSlugQuery
 // Query: *[_type == "pages" && defined(slug.current)] {  _updatedAt,  "slug": slug.current,}
 export type PagesSlugQueryResult = Array<{
   _updatedAt: string;
   slug: string | null;
 }>;
+
+// Source: sanity/lib/queries.ts
 // Variable: pagesContentQuery
 // Query: *[_type == "pages" && slug.current == $slug][0] {  _id,  title,  "slug": slug.current,  "contentModulde": content[]{    _id,    _key,    _type,    titleBlock,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "richTextTitle": title,  "richtextTitleText": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,        _id,  "isDisplayed": event.isDisplayed,  "lastEventLabel": event.title,  "goToAllEvents": event.ctaToEvents,        _id,  "creationArchivesTitle": intro[],  "creationArchivesArchive": archive[] {    title,    description[],    status,    },        _id,  "customHtml": html,  "codeTitle": codeTitle,  "isAddFiles": isAddFiles,  "fileGroup": fileGroup[] {    title,    files[] {      asset->,      },      },        _id,  title,  "fileUrl": file.asset->url,  "fileName": file.asset->originalFilename,    },  }}
 export type PagesContentQueryResult = {
@@ -1305,14 +1256,7 @@ export type PagesContentQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -1547,14 +1491,7 @@ export type PagesContentQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -1574,14 +1511,7 @@ export type PagesContentQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -1625,14 +1555,7 @@ export type PagesContentQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -1652,14 +1575,7 @@ export type PagesContentQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -1722,6 +1638,8 @@ export type PagesContentQueryResult = {
     > | null;
   }> | null;
 } | null;
+
+// Source: sanity/lib/queries.ts
 // Variable: listeDeFondsQuery
 // Query: *[_type == "pages" && slug.current == "liste-des-fonds"][0] {  _id,  title,  "slug": slug.current,  introduction[]{    ...,  },  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  },  "contentModuleAD": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["a-d"]],  "contentModuleEH": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["e-h"]],  "contentModuleIM": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["i-m"]],  "contentModuleNQ": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["n-q"]],  "contentModuleRU": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["r-u"]],  "contentModuleVZ": contentFromListeDeFonds[] | order(titleBlock asc){    _id,    _key,    _type,    titleBlock,    category,    "contenBlock": block[]{      _type,        _id,  _key,  "richtext": text[],        _id,  "imageTitle": title,  "imageUrl": image.asset->url,  credits,        _id,  "multiImages": images[] {    "imageUrl": image.asset->url,    alt,    credits,  },        _id,  "linkLabel": label,  // external  external,  // internal  "internal": internal->{    _id,    _type,    title,    "slug": slug.current,  },  "mail": mail,    },  }[category in ["v-z"]],}
 export type ListeDeFondsQueryResult = {
@@ -1802,14 +1720,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -1901,14 +1812,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -2000,14 +1904,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -2099,14 +1996,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -2198,14 +2088,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -2297,14 +2180,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -2396,14 +2272,7 @@ export type ListeDeFondsQueryResult = {
               _key: string;
             }>;
             style?:
-              | "blockquote"
-              | "h1"
-              | "h2"
-              | "h3"
-              | "h4"
-              | "h5"
-              | "h6"
-              | "normal";
+              "blockquote" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "normal";
             listItem?: "bullet" | "number";
             markDefs?: Array<{
               href?: string;
@@ -2441,17 +2310,10 @@ export type ListeDeFondsQueryResult = {
   }> | null;
 } | null;
 
-// Source: ./app/(next)/[slug]/page.tsx
-// Variable: pageSlugs
-// Query: *[_type == "pages"]{slug}
-export type PageSlugsResult = Array<{
-  slug: Slug | null;
-}>;
-
 // Query TypeMap
-import "@sanity/client";
-declare module "@sanity/client" {
+declare global {
   interface SanityQueries {
+    '*[_type == "pages"]{slug}': PageSlugsResult;
     '*[_type == "settings"][0] {\n  "globalSettings": {\n    "siteTitle": globalSettings.siteTitle,\n    "siteDescription": globalSettings.siteDescription,\n    "ogImage": globalSettings.ogImage.asset->url,\n    "altText": globalSettings.ogImage.alt,\n  },\n  "header": header{\n    "logo": logo {\n      "logoImage": logoImage.asset->url,\n      alt,\n    },\n    "links": headerLinks[] {\n      _key,\n      type,\n      linkPosition,\n      "internalLinkDetails": internalLink-> {\n        _id,\n        _key,\n        _type,\n        title,\n        "slug": slug.current\n      },\n      "externalLinkDetails": {\n        _key,\n        "title": externalLink.title,\n        "url": externalLink.url\n      }\n    }\n  },\n  "footer": footer{\n    "logo": logo {\n      "logoImage": logoImage.asset->url,\n      alt,\n    },\n    partnerLogos[] {\n      "logoImage": asset->url,\n      alt\n    },\n    \n    "addressGroup": addressGroup {\n      addressTitle,\n      addressContent[]{\n        ...,\n      },\n      mailAddress,\n    },\n    "socialGroup": socialGroup[] {\n      socialName,\n      socialLink,\n      socialLinkImage{\n        "imageUrl": asset->url,\n        alt,\n      },\n    },\n    "footerLinks": footerLinks[]{\n      _key,\n      groupName,\n      modules[]{\n        type,\n        "internalLink": internalLink->{\n          title,\n          "slug": slug.current\n        },\n        externalLink{\n          title,\n          url\n        },\n        text\n      }\n  }\n\n  }\n}': SettingsQueryResult;
     '*[_type == "homepage"][0] {\n  _key,\n  _id,\n  _type,\n\n  "heroVisibility": hero.heroVisibility,\n  "hero": hero.hero[]{\n    \n    ...,\n    _id,\n    _key,\n    "image": image{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n    cta {\n      ctaLabel,\n      ctaLink->{\n        _type,\n        "slug": slug.current\n      }\n    }\n\n  },\n\n  "secondPartVisibility": secondPart.secondPartVisibility,\n  "secondPart": secondPart.block[]{\n   \n  ...,\n  _id,\n  _key,\n  "image": image{\n    "imageUrl": image.asset->url,\n    alt,\n  },\n  cta {\n    ctaLabel,\n    ctaLink->{\n      _type,\n      "slug": slug.current\n    },\n    ctaScrollTo\n  },\n\n  },\n\n  introText {\n    introTextVisibility,\n    introTextContent[]{\n      ...,\n  },\n    newsletterTextContent\n  },\n\n  "upcomingEventsSection": upcomingEventsSection {\n    upcomingEventsSectionVisibility,\n    upcomingEventsTitle,\n    upcomingEventsCTA{\n      eventsCTATitle,\n      eventsCTA->,\n    },\n    "upcomingEvents": upcomingEvents[]-> {\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventDate,\n  eventDescription2,\n  eventLocation,\n  "image": eventImage{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n},\n    upcomingEventsCTATitle,\n  },\n\n  marqueeCTA {\n    marqueeCTAVisibility,\n    marqueeContent,\n    marqueeLink,\n  }\n \n}': HomepageQueryResult;
     '*[_type == "events" && slug.current == $event][0]{\n  _id,\n  eventType,\n  eventTitle,\n  slug,\n  eventEntrance,\n  eventDate,\n  eventDescription2,\n  eventLocation,\n  "image": eventImage{\n      "imageUrl": image.asset->url,\n      alt,\n    },\n}': EventQueryResult;
@@ -2461,6 +2323,9 @@ declare module "@sanity/client" {
     '*[_type == "pages" && defined(slug.current)] {\n  _updatedAt,\n  "slug": slug.current,\n}': PagesSlugQueryResult;
     '*[_type == "pages" && slug.current == $slug][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  "contentModulde": content[]{\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "richTextTitle": title,\n  "richtextTitleText": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n      \n  _id,\n  "isDisplayed": event.isDisplayed,\n  "lastEventLabel": event.title,\n  "goToAllEvents": event.ctaToEvents,\n\n      \n  _id,\n  "creationArchivesTitle": intro[],\n  "creationArchivesArchive": archive[] {\n    title,\n    description[],\n    status,\n    },\n\n      \n  _id,\n  "customHtml": html,\n  "codeTitle": codeTitle,\n  "isAddFiles": isAddFiles,\n  "fileGroup": fileGroup[] {\n    title,\n    files[] {\n      asset->,\n      },\n      },\n\n      \n  _id,\n  title,\n  "fileUrl": file.asset->url,\n  "fileName": file.asset->originalFilename,\n\n    },\n  }\n}\n': PagesContentQueryResult;
     '*[_type == "pages" && slug.current == "liste-des-fonds"][0] {\n  _id,\n  title,\n  "slug": slug.current,\n  introduction[]{\n    ...,\n  },\n  "contentModule": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  },\n  "contentModuleAD": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["a-d"]],\n  "contentModuleEH": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["e-h"]],\n  "contentModuleIM": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["i-m"]],\n  "contentModuleNQ": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["n-q"]],\n  "contentModuleRU": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["r-u"]],\n  "contentModuleVZ": contentFromListeDeFonds[] | order(titleBlock asc){\n    _id,\n    _key,\n    _type,\n    titleBlock,\n    category,\n    "contenBlock": block[]{\n      _type,\n      \n  _id,\n  _key,\n  "richtext": text[],\n\n      \n  _id,\n  "imageTitle": title,\n  "imageUrl": image.asset->url,\n  credits,\n\n      \n  _id,\n  "multiImages": images[] {\n    "imageUrl": image.asset->url,\n    alt,\n    credits,\n  },\n\n      \n  _id,\n  "linkLabel": label,\n  // external\n  external,\n  // internal\n  "internal": internal->{\n    _id,\n    _type,\n    title,\n    "slug": slug.current,\n  },\n  "mail": mail,\n\n    },\n  }[category in ["v-z"]],\n}\n': ListeDeFondsQueryResult;
-    '*[_type == "pages"]{slug}': PageSlugsResult;
   }
+}
+// Lets @sanity/client releases that predate the global registry read it too
+declare module "@sanity/client" {
+  interface SanityQueries extends globalThis.SanityQueries {}
 }

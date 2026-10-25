@@ -57,7 +57,7 @@ export default function CreationArchivesModule({
                 </span>
                 <div
                   className={clsx(
-                    "text-[.8rem] transition-transform duration-[.5s] ease-tamisitée",
+                    "text-[.8rem] transition-transform duration-[.5s] ease-tamisee",
                     archiveIndex === index ? "rotate-[135deg]" : "rotate-0",
                   )}
                 >

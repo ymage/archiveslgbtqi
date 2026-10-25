@@ -45,7 +45,7 @@ const NewsletterForm: React.FC = () => {
         <button
           type="submit"
           disabled={status === "loading"}
-          className="absolute right-0 top-0 flex aspect-square h-[2.5rem] items-center justify-center bg-white p-[1rem] px-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisitée hover:bg-black hover:text-white"
+          className="absolute right-0 top-0 flex aspect-square h-[2.5rem] items-center justify-center bg-white p-[1rem] px-[1rem] font-tanker uppercase text-pink-arch transition-colors duration-200 ease-tamisee hover:bg-black hover:text-white"
         >
           {status === "loading" ? "..." : "OK"}
         </button>

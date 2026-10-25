@@ -81,7 +81,7 @@ export default function HeroDesktop({ heroes }: Props) {
         >
           <div
             className={clsx(
-              "absolute inset-0 top-0 h-full w-full bg-pink-arch transition-opacity duration-300 ease-tamisitée",
+              "absolute inset-0 top-0 h-full w-full bg-pink-arch transition-opacity duration-300 ease-tamisee",
               currentHero === index
                 ? "opacity-0"
                 : "z-10 opacity-0 mix-blend-multiply hover:opacity-100",
@@ -102,7 +102,7 @@ export default function HeroDesktop({ heroes }: Props) {
                       : "#"
               }
               className={clsx(
-                "absolute bottom-[3rem] left-[2rem] z-20 flex max-h-[15rem] min-h-[15rem] w-[80%] min-w-[80%] max-w-[80%] flex-col items-start space-y-[.5rem] bg-black p-[2rem] text-white transition-[opacity,colors] duration-300 ease-tamisitée hover:text-pink-arch",
+                "absolute bottom-[3rem] left-[2rem] z-20 flex max-h-[15rem] min-h-[15rem] w-[80%] min-w-[80%] max-w-[80%] flex-col items-start space-y-[.5rem] bg-black p-[2rem] text-white transition-[opacity,colors] duration-300 ease-tamisee hover:text-pink-arch",
                 currentHero === index ? "block" : "hidden",
               )}
             >

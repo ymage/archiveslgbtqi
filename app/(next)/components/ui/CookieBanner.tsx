@@ -7,6 +7,8 @@ export default function CookieBanner() {
   const [isFirstVisit, setIsFirstVisit] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(false);
 
+  // localStorage is only readable after mount, so state must be set in the effect
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     const firstVisit = localStorage.getItem("firstVisit");
 
@@ -19,6 +21,7 @@ export default function CookieBanner() {
       setIsVisible(false);
     }
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const handleClose = () => {
     setIsVisible(false);
@@ -30,7 +33,7 @@ export default function CookieBanner() {
       {isFirstVisit && isVisible && (
         <div
           className={clsx(
-            "sticky bottom-0 left-0 right-0 z-40 flex h-auto items-center justify-between bg-white p-[1rem] transition-transform duration-300 ease-tamisitée",
+            "sticky bottom-0 left-0 right-0 z-40 flex h-auto items-center justify-between bg-white p-[1rem] transition-transform duration-300 ease-tamisee",
             isVisible ? "translate-y-[0%]" : "translate-y-[100%]",
           )}
         >

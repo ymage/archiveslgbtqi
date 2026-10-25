@@ -1,4 +1,4 @@
-import { TextIcon } from "@sanity/icons";
+import { TextIcon } from "@sanity/icons/Text";
 import { defineField, defineType } from "sanity";
 
 export default defineType({

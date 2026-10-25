@@ -17,13 +17,13 @@ export default function HeroDesktop({ heroes }: Props) {
             key={index}
             className="relative h-full min-h-[100svh] min-w-[100vw] snap-start scroll-auto"
           >
-            <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisitée">
+            <div className="group absolute inset-x-0 top-[1rem] flex flex-col items-end px-[1rem] text-white opacity-100 transition-all duration-500 ease-tamisee">
               <div className="min-h-[10rem] min-w-full space-y-[.5rem] bg-black p-[2rem]">
                 <h1 className="heroTitle">{hero.title}</h1>
                 <p className="heroParagraph">{hero.paragraph}</p>
               </div>
 
-              <div className="relative w-fit translate-y-[-25%] overflow-hidden bg-black pb-[.5rem] transition-all duration-200 ease-tamisitée">
+              <div className="relative w-fit translate-y-[-25%] overflow-hidden bg-black pb-[.5rem] transition-all duration-200 ease-tamisee">
                 <Link
                   href={
                     hero?.cta?.ctaLink?._type === "pages"

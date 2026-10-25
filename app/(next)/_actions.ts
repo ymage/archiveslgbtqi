@@ -1,5 +1,6 @@
 "use server";
 
+import { createElement } from "react";
 import { z } from "zod";
 import { Resend } from "resend";
 
@@ -35,7 +36,7 @@ export async function sendEmail(data: ContactFormInputs) {
         to: ["thibaut.randria@gmail.com"],
         subject: `Proposition d'archive: ${title}`,
         text: `Nom: ${name}\nAdresse mail: ${email}\nMessage: ${message} `,
-        react: ContactFormEmail({ name, email, message, title }),
+        react: createElement(ContactFormEmail, { name, email, message, title }),
       });
       return { success: true, data };
     } catch (error) {

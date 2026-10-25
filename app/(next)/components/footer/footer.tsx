@@ -78,7 +78,7 @@ export default async function Footer() {
             <a
               href={`mailto:${settings?.footer?.addressGroup?.mailAddress}`}
               aria-label="Envoyer un mail"
-              className="hidden w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch lg:block"
+              className="hidden w-fit transition-colors duration-300 ease-tamisee hover:text-pink-arch lg:block"
             >
               {settings?.footer?.addressGroup?.mailAddress}
             </a>
@@ -99,7 +99,7 @@ export default async function Footer() {
                     key={social.socialName}
                     href={social.socialLink || ""}
                     aria-label="Lien vers le réseau social"
-                    className="group relative flex aspect-square h-[2.75rem] w-[2.75rem] cursor-pointer items-center justify-center rounded-full border-[1px] border-white transition-colors duration-300 ease-tamisitée hover:border-pink-arch lg:h-[2rem] lg:w-[2rem]"
+                    className="group relative flex aspect-square h-[2.75rem] w-[2.75rem] cursor-pointer items-center justify-center rounded-full border-[1px] border-white transition-colors duration-300 ease-tamisee hover:border-pink-arch lg:h-[2rem] lg:w-[2rem]"
                   >
                     <Image
                       src={social.socialLinkImage?.imageUrl || ""}
@@ -108,7 +108,7 @@ export default async function Footer() {
                       height={50}
                       className="h-[2rem] w-[2rem] antialiased lg:h-[1.25rem] lg:w-[1.25rem]"
                     />
-                    <div className="absolute inset-0 rounded-full bg-pink-arch opacity-0 mix-blend-multiply transition-opacity duration-300 ease-tamisitée group-hover:opacity-100" />
+                    <div className="absolute inset-0 rounded-full bg-pink-arch opacity-0 mix-blend-multiply transition-opacity duration-300 ease-tamisee group-hover:opacity-100" />
                   </a>
                 ))}
               </div>
@@ -160,7 +160,7 @@ export default async function Footer() {
           <a
             href={`mailto:${settings?.footer?.addressGroup?.mailAddress}`}
             aria-label="Envoyer un mail"
-            className="footerText mb-[3.5rem] block w-fit transition-colors duration-300 ease-tamisitée hover:text-pink-arch lg:hidden"
+            className="footerText mb-[3.5rem] block w-fit transition-colors duration-300 ease-tamisee hover:text-pink-arch lg:hidden"
           >
             {settings?.footer?.addressGroup?.mailAddress}
           </a>

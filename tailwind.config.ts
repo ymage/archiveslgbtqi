@@ -11,9 +11,6 @@ export default {
         cityburn: ["var(--font-cityburn)"],
         jetbrains: ["var(--font-jetbrains)"],
       },
-      transitionTimingFunction: {
-        tamisitée: "cubic-bezier(0.6, 0.01, 0.05, 0.95)",
-      },
       animation: {
         marquee: "marquee 10s linear infinite",
         "slow-pulse": "slow-pulse 3s ease-in-out infinite",

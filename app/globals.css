@@ -1,6 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@theme {
+  --ease-tamisee: cubic-bezier(0.6, 0.01, 0.05, 0.95);
+}
 
 @layer base {
   .no-scrollbar::-webkit-scrollbar {
@@ -36,7 +39,7 @@
   }
 
   .heroButtonTransition {
-    @apply transition-[transform,padding] duration-300 ease-tamisitée hover:translate-y-0 group-hover:translate-y-0 group-hover:py-[1rem];
+    @apply transition-[transform,padding] duration-300 ease-tamisee hover:translate-y-0 group-hover:translate-y-0 group-hover:py-[1rem];
   }
 
   .newsLetterInput {
@@ -54,7 +57,7 @@
   }
 
   .footerTextHover {
-    @apply transition-colors duration-300 ease-tamisitée hover:text-pink-arch;
+    @apply transition-colors duration-300 ease-tamisee hover:text-pink-arch;
   }
 
   .footerCopyright {
@@ -80,11 +83,11 @@
   }
 
   .sidebarButton {
-    @apply font-tanker text-[1rem] leading-[.7rem] tracking-wider transition-colors duration-100 ease-tamisitée hover:text-pink-arch;
+    @apply font-tanker text-[1rem] leading-[.7rem] tracking-wider transition-colors duration-100 ease-tamisee hover:text-pink-arch;
   }
 
   .sidebarLDFButton {
-    @apply font-tanker text-[1rem] leading-[.7rem] tracking-[.25rem] transition-colors duration-100 ease-tamisitée hover:text-pink-arch;
+    @apply font-tanker text-[1rem] leading-[.7rem] tracking-[.25rem] transition-colors duration-100 ease-tamisee hover:text-pink-arch;
   }
 
   .sideBarTitle {

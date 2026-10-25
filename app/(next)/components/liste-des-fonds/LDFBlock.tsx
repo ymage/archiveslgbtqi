@@ -38,7 +38,6 @@ export default function LDFBlock({ list }: LDFBlockProps) {
             | boolean
             | React.ReactElement<any, string | React.JSXElementConstructor<any>>
             | Iterable<React.ReactNode>
-            | Promise<React.AwaitedReactNode>
             | null
             | undefined;
           titleBlock:
@@ -49,7 +48,6 @@ export default function LDFBlock({ list }: LDFBlockProps) {
             | React.ReactElement<any, string | React.JSXElementConstructor<any>>
             | Iterable<React.ReactNode>
             | React.ReactPortal
-            | Promise<React.AwaitedReactNode>
             | Iterable<React.ReactNode>
             | null
             | undefined;
@@ -84,7 +82,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
               aria-label="Boutton des Liste des fonds"
               onClick={() => handleClick(categoryRange, index ?? 0)}
               className={clsx(
-                "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden pt-[.3rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisitée hover:bg-pink-arch lg:pb-[1rem] lg:pt-[.55rem]",
+                "relative flex w-full flex-col items-start justify-start gap-[1rem] overflow-hidden pt-[.3rem] text-start transition-[colors,max-height] duration-[.5s] ease-tamisee hover:bg-pink-arch lg:pb-[1rem] lg:pt-[.55rem]",
                 activeCategory === categoryRange && listIndex === index
                   ? "max-h-[70rem] pb-[1rem] hover:bg-white hover:text-black lg:max-h-[100rem]"
                   : "max-h-[2.15rem] hover:bg-pink-arch hover:text-white lg:max-h-[2.75rem]",
@@ -109,7 +107,7 @@ export default function LDFBlock({ list }: LDFBlockProps) {
                 </div>
                 <div
                   className={clsx(
-                    "mb-[.5rem] hidden text-[.8rem] leading-[.5rem] transition-transform duration-[.5s] ease-tamisitée lg:block",
+                    "mb-[.5rem] hidden text-[.8rem] leading-[.5rem] transition-transform duration-[.5s] ease-tamisee lg:block",
                     activeCategory === categoryRange && listIndex === index
                       ? "rotate-[135deg]"
                       : "rotate-0",

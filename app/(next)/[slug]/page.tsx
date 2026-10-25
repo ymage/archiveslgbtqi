@@ -30,9 +30,9 @@ import { FormSubmission } from "../components/ui";
 import { transformId } from "../utils/TransforId";
 
 type Props = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 const pageSlugs = groq`*[_type == "pages"]{slug}`;
@@ -47,7 +47,8 @@ export async function generateStaticParams() {
   return params.map(({ slug }) => ({ slug: slug?.current }));
 }
 
-export default async function Page({ params }: Props) {
+export default async function Page(props: Props) {
+  const params = await props.params;
   const [content, lastEvent] = await Promise.all([
     sanityFetch<PagesContentQueryResult>({
       query: pagesContentQuery,
