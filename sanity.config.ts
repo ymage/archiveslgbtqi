@@ -41,7 +41,6 @@ import creationArchives from "./sanity/schemas/block/creation-archives";
 import richtextAndTitle from "./sanity/schemas/block/richtext-title";
 import customHtml from "./sanity/schemas/block/custom-html";
 import listeDesFondsContent from "./sanity/schemas/contents/liste-des-fonds-content";
-import { MyEnhancedNavbar } from "./app/(sanity)/components/EnhancedNavbar";
 import Logo from "./app/(sanity)/components/Logo";
 
 export default defineConfig({
@@ -53,11 +52,6 @@ export default defineConfig({
   scheduledPublishing: {
     enabled: false,
   },
-  // studio: {
-  //   components: {
-  //     navbar: MyEnhancedNavbar,
-  //   },
-  // },
   schema: {
     types: [
       // Singletons
@@ -91,9 +85,6 @@ export default defineConfig({
     presentationTool({
       previewUrl: { previewMode: { enable: "/api/draft" } },
     }),
-    // structureTool({
-    //   structure: pageStructure([settings, header, homepage, footer]),
-    // }),
     codeInput(),
     // Configures the global "new document" button, and document actions, to suit the Settings document singleton
     singletonPlugin([settings.name]),
@@ -101,9 +92,6 @@ export default defineConfig({
     unsplashImageAsset(),
     // media plugin
     media(),
-    // Sets up AI Assist with preset prompts
-    // https://www.sanity.io/docs/ai-assist
-    // assistWithPresets(),
     // Vision lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     process.env.NODE_ENV === "development" &&

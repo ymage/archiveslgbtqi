@@ -21,10 +21,11 @@ Versions résolues au 2026-10-25 (`package.json` / `package-lock.json`). Node.js
 | HTTP | axios | 1.20 | appels Brevo |
 | Réseau | cacheable-lookup | 7.0 | cache DNS du client serveur |
 | Notifications | sonner | 2.0 | toasts |
+| Utilitaires | clsx | 2.1 | composition de classes |
 | Dates | date-fns | 4.4 | |
 | Mesure | @vercel/speed-insights | 2.0 | |
 
-Plugins du Studio : `@sanity/vision` (développement uniquement), `@sanity/code-input`, `@sanity/assist` (désactivé), `@sanity/locale-fr-fr`, `sanity-plugin-media`, `sanity-plugin-asset-source-unsplash`.
+Plugins du Studio : `@sanity/vision` (développement uniquement), `@sanity/code-input`, `@sanity/locale-fr-fr`, `sanity-plugin-media`, `sanity-plugin-asset-source-unsplash`.
 
 ## Outillage
 
@@ -45,20 +46,12 @@ Scripts : voir [README](../README.md#scripts-disponibles).
 
 Voir [ADR-0008](./adr/0008-versions-figees-outillage.md) : `eslint` 9 (10 existe), `typescript` 6 (7 existe), `@hookform/resolvers` 5 (6 existe).
 
-## Dépendances déclarées mais sans import direct
+## Dépendances à conserver sans import direct
 
-Constat par recherche d'imports dans `app/`, `sanity/` et les fichiers de configuration. Non supprimées (hors périmètre de la documentation) :
+| Paquet | Raison |
+|--------|--------|
+| `styled-components` | pair requis par le Studio Sanity |
+| `sharp` | utilisé automatiquement par Next pour l'optimisation d'images |
+| `@portabletext/react` | réexporté par `next-sanity`, importé depuis celui-ci (déclaré mais pas importé directement) |
 
-| Paquet | Remarque |
-|--------|----------|
-| `formik`, `yup` | aucune utilisation ; la validation passe par react-hook-form + zod |
-| `node-fetch` | aucune utilisation ; `fetch` natif et axios suffisent |
-| `react-email` | seul `@react-email/components` est importé |
-| `react-icons` | aucune utilisation |
-| `lenis` | aucune utilisation (le README l'annonçait comme défilement fluide) |
-| `sanity-plugin-documents-pane` | aucune utilisation |
-| `@portabletext/react` | réexporté par `next-sanity`, importé depuis celui-ci |
-| `sharp` | pas d'import ; Next l'utilise automatiquement pour l'optimisation d'images |
-| `styled-components` | pair requis par le Studio Sanity — à conserver |
-
-À l'inverse, `clsx` est importé (`CookieBanner`, `[slug]/page.tsx`, `blog/page.tsx`…) mais **n'est pas déclaré** dans `package.json` (dépendance transitive).
+Avant d'ajouter une dépendance, vérifier qu'elle n'est pas déjà couverte par une dépendance installée ; avant d'en supprimer une, rechercher ses imports dans `app/`, `sanity/` et les fichiers de configuration.

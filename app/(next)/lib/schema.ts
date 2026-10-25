@@ -1,14 +1,5 @@
 import { z } from "zod";
 
-export const FormDataSchema = z.object({
-  name: z.string().nonempty("Name is required."),
-  title: z.string().nonempty("Title is required."),
-  message: z
-    .string()
-    .nonempty("Message is required.")
-    .min(6, { message: "Message must be at least 6 characters." }),
-});
-
 export const ContactFormSchema = z.object({
   name: z.string().nonempty("Name is required.").max(100),
   email: z

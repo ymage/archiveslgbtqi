@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { ContactFormSchema, FormDataSchema } from "@/app/(next)/lib/schema";
+import { ContactFormSchema } from "@/app/(next)/lib/schema";
 
 const valid = {
   name: "Ada",
@@ -22,12 +22,5 @@ describe("ContactFormSchema", () => {
     expect(ContactFormSchema.safeParse({ ...valid, ...patch }).success).toBe(
       false,
     );
-  });
-});
-
-describe("FormDataSchema", () => {
-  it("requires name, title and a 6+ char message", () => {
-    expect(FormDataSchema.safeParse({ name: "", title: "", message: "" }).success).toBe(false);
-    expect(FormDataSchema.safeParse({ name: "a", title: "b", message: "123456" }).success).toBe(true);
   });
 });

@@ -13,7 +13,15 @@ export default async function sitemap() {
       lastModified: new Date(),
     },
     {
-      url: `${baseUrl}/about`,
+      url: `${baseUrl}/agenda`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/blog`,
+      lastModified: new Date(),
+    },
+    {
+      url: `${baseUrl}/contact`,
       lastModified: new Date(),
     },
   ];

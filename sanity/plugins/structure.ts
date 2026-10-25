@@ -50,17 +50,11 @@ export const structure = async (S: StructureBuilder) => {
           item.getId() !== "document-file" &&
           item.getId() !== "single-image" &&
           item.getId() !== "multi-images" &&
-          item.getId() !== "customExternalLink" &&
           item.getId() !== "link" &&
           item.getId() !== "contact-form" &&
           item.getId() !== "lastEvent" &&
           item.getId() !== "creationArchives" &&
           item.getId() !== "custom-html" &&
-          item.getId() !== "creative-module" &&
-          item.getId() !== "creativeCtas" &&
-          item.getId() !== "creativeIcon" &&
-          item.getId() !== "creativeImage" &&
-          item.getId() !== "creativeRichtext" &&
           item.getId() !== "liste-des-fonds-content" &&
           // hide Media from the Media Plugin
           item.getId() !== "media.tag",

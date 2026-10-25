@@ -21,11 +21,11 @@ Navigateur ──► Next.js (conteneur Node 24)
 | Chemin | Rôle |
 |--------|------|
 | `app/(next)/` | Site public : `layout.tsx`, pages, `components/`, `emails/`, `lib/`, `utils/`, `fonts/` |
-| `app/(sanity)/` | Layout du Studio, route `studio/[[...tool]]` (`force-static`), composants du Studio (`Logo`, `EnhancedNavbar`) |
+| `app/(sanity)/` | Layout du Studio, route `studio/[[...tool]]` (`force-static`), composant du Studio (`Logo`) |
 | `app/api/` | `draft` (activation du mode brouillon), `newsletter` (inscription Brevo) |
 | `sanity/lib/` | `api.ts` (env), clients, `fetch.ts`, `queries.ts` (GROQ), `token.ts`, `utils.ts` (image, href) |
 | `sanity/schemas/` | Schémas : `singletons/`, `documents/`, `contents/`, `block/`, `utils/` |
-| `sanity/plugins/` | Structure du Studio, singletons, champs à limite de caractères, AI Assist (désactivé) |
+| `sanity/plugins/` | Structure du Studio, singletons, champs à limite de caractères |
 | `sanity.config.ts`, `sanity.cli.ts` | Configuration du Studio / de la CLI |
 | `sanity.types.ts`, `schema.json` | Générés par `npm run typegen` — ne pas éditer à la main |
 | `tests/` | `unit/` (Vitest), `e2e/` (Playwright) |
