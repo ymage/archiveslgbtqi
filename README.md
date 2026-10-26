@@ -115,6 +115,7 @@ Avec les variables de build :
 docker build -f docker/Dockerfile \
   --build-arg NEXT_PUBLIC_SANITY_PROJECT_ID=xxx \
   --build-arg NEXT_PUBLIC_SANITY_DATASET=production \
+  --build-arg NEXT_PUBLIC_SITE_URL=https://exemple.fr \
   -t archives-lgbtqi .
 ```
 
