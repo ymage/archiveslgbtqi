@@ -35,7 +35,12 @@ export default defineType({
         maxLength: 96,
         isUnique: (value, context) => context.defaultIsUnique(value, context),
       },
-      validation: (rule) => rule.required(),
+      validation: (rule) =>
+        rule.required().custom((slug) =>
+          !slug?.current || /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug.current)
+            ? true
+            : "Le slug ne doit contenir que des lettres minuscules, chiffres et tirets.",
+        ),
     }),
     defineField({
       name: "introduction",

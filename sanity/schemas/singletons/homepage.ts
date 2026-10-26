@@ -347,6 +347,8 @@ export default defineType({
           name: "marqueeLink",
           title: "Lien du bandeau",
           type: "url",
+          validation: (Rule) =>
+            Rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
         }),
       ],
     }),

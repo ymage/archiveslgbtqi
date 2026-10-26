@@ -13,6 +13,7 @@ import {
   type PortableTextComponents,
   type PortableTextBlock,
 } from "next-sanity";
+import { safeHref } from "@/app/(next)/utils/safeHref";
 
 export default function MyCustomPortableText({
   className,
@@ -43,7 +44,7 @@ export default function MyCustomPortableText({
       link: ({ children, value }) => {
         return (
           <a
-            href={value?.href}
+            href={safeHref(value?.href)}
             rel="noreferrer noopener"
             target="_blank"
             aria-label="Lien externe"

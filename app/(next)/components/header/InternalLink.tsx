@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 
 import HeaderTransitionLink from "./HeaderTransitionLink";
+import { internalHref } from "@/app/(next)/utils/safeHref";
 
 type InternalLinkProps = {
   link: {
@@ -35,7 +36,7 @@ export default function InternalLink({
       {device === "mobile" && (
         <Link
           key={link._key}
-          href={`/${link.internalLinkDetails?.slug || ""}`}
+          href={internalHref(link.internalLinkDetails?.slug)}
           onClick={onclick}
           className={clsx(
             "headerItem",
@@ -50,7 +51,7 @@ export default function InternalLink({
       {device === "desktop" && (
         <HeaderTransitionLink
           key={link._key}
-          href={`/${link.internalLinkDetails?.slug || ""}`}
+          href={internalHref(link.internalLinkDetails?.slug)}
           className={clsx(
             "headerItem",
             pathname === `/${link.internalLinkDetails?.slug}`

@@ -11,6 +11,7 @@ import HeaderTransitionLink from "../header/HeaderTransitionLink";
 import CTAMarquee from "../homepage/CTAMarquee";
 
 import FooterNewsLetter from "./FooterNewsletter";
+import { internalHref, safeHref } from "@/app/(next)/utils/safeHref";
 
 export default async function Footer() {
   const settings = await sanityFetch<SettingsQueryResult>({
@@ -97,7 +98,7 @@ export default async function Footer() {
                 {settings?.footer?.socialGroup?.map((social) => (
                   <a
                     key={social.socialName}
-                    href={social.socialLink || ""}
+                    href={safeHref(social.socialLink)}
                     aria-label="Lien vers le réseau social"
                     className="group relative flex aspect-square h-[2.75rem] w-[2.75rem] cursor-pointer items-center justify-center rounded-full border-[1px] border-white transition-colors duration-300 ease-tamisee hover:border-pink-arch lg:h-[2rem] lg:w-[2rem]"
                   >
@@ -132,7 +133,7 @@ export default async function Footer() {
                       return (
                         <HeaderTransitionLink
                           key={module.internalLink?.slug}
-                          href={`/${module.internalLink?.slug}`}
+                          href={internalHref(module.internalLink?.slug)}
                           className="footerTextHover"
                         >
                           {module.internalLink?.title}
@@ -142,7 +143,7 @@ export default async function Footer() {
                       return (
                         <a
                           key={module.externalLink?.url}
-                          href={module.externalLink?.url || ""}
+                          href={safeHref(module.externalLink?.url)}
                           target="_blank"
                           rel="noreferrer"
                           aria-label="Lien externe"

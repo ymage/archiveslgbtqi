@@ -64,6 +64,7 @@ jobs:
           build-args: |
             NEXT_PUBLIC_SANITY_DATASET=${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
             NEXT_PUBLIC_SANITY_PROJECT_ID=${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+            NEXT_PUBLIC_SITE_URL=${{ secrets.NEXT_PUBLIC_SITE_URL }}
 
       - name: Generate artifact attestation
         if: github.ref_type == 'tag'
@@ -80,7 +81,8 @@ jobs:
           account: user
           token: ${{ secrets.GITHUB_TOKEN }}
           image-names: archiveslgbtqi
-          image-tags: "!latest !main !v*"
+          # keep release tags (v1.2.3, 1.2.3, 1.2) and the sha256-* attestation referrers
+          image-tags: "!latest !main !v* !*.* !sha256-*"
           keep-n-most-recent: 2
           cut-off: 1w
           dry-run: false

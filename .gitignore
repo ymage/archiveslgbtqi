@@ -27,8 +27,10 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# local env files
-.env*.local
+# local env files (any .env*, except committed examples)
+.env*
+!.env*.example
+!.env*.sample
 
 # vercel
 .vercel
@@ -36,11 +38,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# Env files created by scripts for working locally
-.env
-.env.local
-.envrc
 
 # Base Readme
 README-copy.md

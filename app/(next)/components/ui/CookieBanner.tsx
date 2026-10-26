@@ -43,6 +43,8 @@ export default function CookieBanner() {
               Confidentialité mise à jour et notre Politique en matière de
               cookies. Pour modifier vos préférences ou retirer votre
               consentement, vous devez mettre à jour vos Préférences de cookies.
+              Ce site mesure anonymement ses performances (Vercel Speed
+              Insights).
               En savoir plus sur nos
               <Link
                 href="/mentions-legales"

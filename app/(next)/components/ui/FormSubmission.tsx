@@ -32,6 +32,11 @@ export default function FormSubmission() {
       return;
     }
 
+    if (result && "rateLimited" in result && result.rateLimited) {
+      toast.error("Trop de demandes, réessayez plus tard.");
+      return;
+    }
+
     // toast error
     // console.log(result?.error);
     toast.error("Une erreur s'est produite lors de l'envoi de l'archive.");

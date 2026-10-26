@@ -6,7 +6,8 @@ FROM base AS deps
 WORKDIR /var/www
 
 COPY package.json package-lock.json ./
-RUN npm clean-install
+# no lifecycle scripts: the platform binaries (esbuild, sharp, SWC) ship as optional dependencies
+RUN npm clean-install --ignore-scripts
 
 # --- Builder: build + package artifacts ---
 FROM base AS builder
@@ -18,9 +19,11 @@ COPY . .
 
 ARG NEXT_PUBLIC_SANITY_DATASET
 ARG NEXT_PUBLIC_SANITY_PROJECT_ID
+ARG NEXT_PUBLIC_SITE_URL
 
 ENV NEXT_PUBLIC_SANITY_DATASET=$NEXT_PUBLIC_SANITY_DATASET
 ENV NEXT_PUBLIC_SANITY_PROJECT_ID=$NEXT_PUBLIC_SANITY_PROJECT_ID
+ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 
 RUN npm run build
 RUN npm prune --omit=dev
@@ -52,5 +55,8 @@ COPY --from=builder /tmp/entrypoint.sh /usr/local/bin/entrypoint.sh
 WORKDIR /var/www
 COPY --chown=app:app --from=builder /app/ .
 USER app
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD wget -q -O /dev/null "http://127.0.0.1:${PORT:-3000}/robots.txt" || exit 1
 
 ENTRYPOINT [ "entrypoint.sh" ]
