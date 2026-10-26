@@ -6,6 +6,9 @@ let ip = "198.51.100.1";
 vi.mock("resend", () => ({
   Resend: class {
     emails = { send };
+    constructor(key?: string) {
+      if (!key) throw new Error("Missing API key");
+    }
   },
 }));
 vi.mock("next/headers", () => ({
@@ -27,6 +30,7 @@ beforeEach(() => {
   ip = `198.51.100.${++n}`;
   send.mockReset().mockResolvedValue({ data: { id: "1" } });
   vi.stubEnv("CONTACT_RECIPIENT", "team@example.org");
+  vi.stubEnv("RESEND_API_KEY", "re_test");
   vi.spyOn(console, "error").mockImplementation(() => {});
   vi.spyOn(console, "warn").mockImplementation(() => {});
 });
@@ -54,6 +58,12 @@ describe("sendEmail", () => {
     vi.stubEnv("CONTACT_RECIPIENT", "");
     const res = await sendEmail(valid);
     expect(res.success).toBe(false);
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  it("answers a clean failure, not an exception, when RESEND_API_KEY is missing", async () => {
+    vi.stubEnv("RESEND_API_KEY", "");
+    await expect(sendEmail(valid)).resolves.toEqual({ success: false });
     expect(send).not.toHaveBeenCalled();
   });
 

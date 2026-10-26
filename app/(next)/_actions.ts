@@ -10,8 +10,6 @@ import { clientIp, rateLimited } from "./lib/rate-limit";
 import { ContactFormSchema } from "./lib/schema";
 
 type ContactFormInputs = z.infer<typeof ContactFormSchema>;
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const HOUR = 60 * 60 * 1000;
 const PER_IP_LIMIT = 5;
 const GLOBAL_LIMIT = 100;
@@ -39,6 +37,8 @@ export async function sendEmail(data: ContactFormInputs) {
   const { name, email, title, message } = result.data;
 
   try {
+    // built here, not at module load: `new Resend()` throws without a key and would 500 every call
+    const resend = new Resend(process.env.RESEND_API_KEY);
     const data = await resend.emails.send({
       from: "Archives LGBTQI <recensement@archiveslgbtqi.fr>",
       to: [to],
