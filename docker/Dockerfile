@@ -6,7 +6,8 @@ FROM base AS deps
 WORKDIR /var/www
 
 COPY package.json package-lock.json ./
-RUN npm clean-install
+# no lifecycle scripts: the platform binaries (esbuild, sharp, SWC) ship as optional dependencies
+RUN npm clean-install --ignore-scripts
 
 # --- Builder: build + package artifacts ---
 FROM base AS builder
@@ -52,5 +53,8 @@ COPY --from=builder /tmp/entrypoint.sh /usr/local/bin/entrypoint.sh
 WORKDIR /var/www
 COPY --chown=app:app --from=builder /app/ .
 USER app
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
+    CMD wget -q -O /dev/null "http://127.0.0.1:${PORT:-3000}/robots.txt" || exit 1
 
 ENTRYPOINT [ "entrypoint.sh" ]

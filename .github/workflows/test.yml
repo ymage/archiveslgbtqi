@@ -1,0 +1,35 @@
+name: Archives LGBTQI tests
+
+# pull_request only (never pull_request_target) and read-only token: no secret is exposed to PR code.
+on:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      # public identifiers, not secrets
+      NEXT_PUBLIC_SANITY_PROJECT_ID: test
+      NEXT_PUBLIC_SANITY_DATASET: test
+
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm clean-install --ignore-scripts
+
+      - run: npm run lint
+
+      - run: npx tsc --noEmit
+
+      - run: npm test
+
+      # Fails on critical advisories only: the current high ones sit in Sanity Studio tooling and have no non-breaking fix (see docs/known-issues.md).
+      - run: npm audit --omit=dev --audit-level=critical

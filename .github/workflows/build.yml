@@ -80,7 +80,8 @@ jobs:
           account: user
           token: ${{ secrets.GITHUB_TOKEN }}
           image-names: archiveslgbtqi
-          image-tags: "!latest !main !v*"
+          # keep release tags (v1.2.3, 1.2.3, 1.2) and the sha256-* attestation referrers
+          image-tags: "!latest !main !v* !*.* !sha256-*"
           keep-n-most-recent: 2
           cut-off: 1w
           dry-run: false
