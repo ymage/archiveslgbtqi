@@ -82,3 +82,18 @@ describe("POST /api/newsletter", () => {
     expect((await POST(same())).status).toBe(429);
   });
 });
+
+describe("POST /api/newsletter, unexpected Brevo answers", () => {
+  it("500 when Brevo answers with an unexpected 2xx status", async () => {
+    vi.mocked(axios.post).mockResolvedValue({ status: 200, data: {} });
+    const res = await POST(req({ email: "a@b.fr" }));
+    expect(res.status).toBe(500);
+  });
+
+  it("500 on a malformed body", async () => {
+    const res = await POST(
+      new NextRequest("http://localhost/api/newsletter", { method: "POST", body: "{nope" }),
+    );
+    expect(res.status).toBe(500);
+  });
+});

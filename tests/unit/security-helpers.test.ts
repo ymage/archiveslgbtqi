@@ -54,3 +54,14 @@ describe("internalHref", () => {
     [null, "/"],
   ])("%j -> %s", (slug, href) => expect(internalHref(slug)).toBe(href));
 });
+
+describe("rateLimited housekeeping", () => {
+  it("sweeps expired windows and bounds memory", () => {
+    for (let i = 0; i < 10_001; i++) rateLimited(`sweep-${i}`, 1, 10, 0);
+    // all expired at t=100: the sweep empties the map
+    expect(rateLimited("sweep-0", 1, 10, 100)).toBe(false);
+    // 10_001 live windows cannot be swept, so the map is cleared instead of growing
+    for (let i = 0; i < 10_001; i++) rateLimited(`live-${i}`, 1, 1000, 200);
+    expect(rateLimited("live-0", 1, 1000, 201)).toBe(false);
+  });
+});
