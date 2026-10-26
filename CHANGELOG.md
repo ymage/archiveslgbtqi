@@ -2,6 +2,36 @@
 
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
+## [0.1.16](https://github.com/ymage/archiveslgbtqi/compare/v0.1.15..v0.1.16) - 2026-10-26
+
+### 🐞 Bug Fixes
+
+- *(cms)* Validate CMS link schemes, add report-only CSP - ([21aec9a](https://github.com/ymage/archiveslgbtqi/commit/21aec9a5087023bafcfa9cc28c7e7aad1c30e18f)) by @ymage
+- *(forms)* Rate-limit contact and newsletter, use Brevo double opt-in - ([d8d224f](https://github.com/ymage/archiveslgbtqi/commit/d8d224f4fddd09390968e7a5bd240e922ab12978)) by @ymage
+- *(seo)* Serve /robots.txt by moving robots.ts to the app root - ([a5f4119](https://github.com/ymage/archiveslgbtqi/commit/a5f41192bdd898e159d6f560d40ad09b7d9af3d0)) by @ymage
+
+### 📚 Documentation
+
+- Document new env vars, audit triage and .env* ignore rule - ([5108de6](https://github.com/ymage/archiveslgbtqi/commit/5108de6dc84e04e2b601bb3392ac7d42a7fa9127)) by @ymage
+
+### 🧪 Testing
+
+- *(e2e)* Add Playwright flows for banner, links, contact, newsletter and draft mode - ([fe36623](https://github.com/ymage/archiveslgbtqi/commit/fe366232c375fbd409bd0f986aa345a7ad8f9a32)) by @ymage
+- Raise coverage from 14% to 43% and enforce a floor in CI - ([90d8358](https://github.com/ymage/archiveslgbtqi/commit/90d8358ebdfa7b7f2ff8053e4b891ca75e8ff248)) by @ymage
+
+### ⚙️ Miscellaneous Tasks
+
+- *(docker)* Pass NEXT_PUBLIC_SITE_URL at build time so robots.txt and the sitemap use the real URL - ([de60807](https://github.com/ymage/archiveslgbtqi/commit/de6080772674f989aa3937bc41dd20faccbf7d29)) by @ymage
+- Move build tools to devDependencies, harden image, add PR test workflow - ([31fead2](https://github.com/ymage/archiveslgbtqi/commit/31fead2386443b3f970290a9124b046a5bd33f57)) by @ymage
+
+### 📊 Commit Statistics
+
+- 8 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 8 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+- 1 day(s) passed between releases.
+
 ## [0.1.15](https://github.com/ymage/archiveslgbtqi/compare/v0.1.14..v0.1.15) - 2026-10-25
 
 ### ⚙️ Miscellaneous Tasks
