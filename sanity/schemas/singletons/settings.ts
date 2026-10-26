@@ -159,6 +159,8 @@ export default defineType({
                       name: "url",
                       title: "URL",
                       type: "url",
+                      validation: (Rule) =>
+                        Rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
                     }),
                   ],
                   hidden: ({ parent }) => parent?.type !== "external",
@@ -295,6 +297,8 @@ export default defineType({
                   name: "socialLink",
                   title: "Lien vers le réseau social",
                   type: "url",
+                  validation: (Rule) =>
+                    Rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
                 }),
                 defineField({
                   name: "socialLinkImage",
@@ -375,6 +379,8 @@ function moduleGroupstructure() {
                     name: "url",
                     title: "URL",
                     type: "url",
+                    validation: (Rule) =>
+                      Rule.uri({ scheme: ["http", "https", "mailto", "tel"] }),
                   }),
                 ],
                 hidden: ({ parent }) => parent?.type !== "external",

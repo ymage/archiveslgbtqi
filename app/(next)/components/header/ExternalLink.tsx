@@ -1,4 +1,5 @@
 import React from "react";
+import { safeHref } from "@/app/(next)/utils/safeHref";
 
 type ExternalLinkProps = {
   link: {
@@ -14,7 +15,7 @@ export default function ExternalLink({ link }: ExternalLinkProps) {
   return (
     <a
       key={link._key}
-      href={link.externalLinkDetails?.url || ""}
+      href={safeHref(link.externalLinkDetails?.url)}
       target="_blank"
       rel="noreferrer"
       aria-label="Lien externe"
