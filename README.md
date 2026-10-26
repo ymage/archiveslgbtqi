@@ -59,8 +59,12 @@ SANITY_API_READ_TOKEN=votre-token-sanity
 RESEND_API_KEY=votre-cle-resend
 BREVO_API_KEY=votre-cle-brevo
 BREVO_LIST_ID=votre-list-id
-BREVO_WELCOME_EMAIL_TEMPLATE_ID=votre-template-id
+BREVO_DOI_TEMPLATE_ID=votre-template-double-opt-in
+BREVO_DOI_REDIRECT_URL=https://exemple.fr/merci
+CONTACT_RECIPIENT=equipe@exemple.fr
 ```
+
+> Les formulaires (contact et newsletter) sont limités à 5 envois par heure et par adresse IP, et 100 (contact) ou 200 (newsletter) par heure au total (compteurs en mémoire, par conteneur) ; le formulaire de contact a en plus un champ leurre anti-bot. La limite lit la dernière entrée de `X-Forwarded-For` : le conteneur doit donc se trouver derrière exactement un reverse proxy de confiance. `BREVO_DOI_TEMPLATE_ID` désigne un modèle Brevo de double opt-in (il doit contenir le lien `{{ doubleoptin }}`) ; l'adresse n'est ajoutée à la liste qu'après le clic de confirmation.
 
 > `SANITY_API_READ_TOKEN` est requis uniquement pour le mode preview (brouillons) et l'API `/api/draft`. Il ne doit **jamais** être intégré dans l'image Docker au build ; passez-le uniquement au runtime via `-e` (Docker) ou les variables d'environnement de votre orchestrateur.
 
@@ -124,7 +128,9 @@ docker run -p 3000:3000 \
   -e RESEND_API_KEY=xxx \
   -e BREVO_API_KEY=xxx \
   -e BREVO_LIST_ID=xxx \
-  -e BREVO_WELCOME_EMAIL_TEMPLATE_ID=xxx \
+  -e BREVO_DOI_TEMPLATE_ID=xxx \
+  -e BREVO_DOI_REDIRECT_URL=https://exemple.fr/merci \
+  -e CONTACT_RECIPIENT=equipe@exemple.fr \
   archives-lgbtqi
 ```
 

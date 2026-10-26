@@ -87,7 +87,7 @@ Le texte riche est rendu par `MyCustomPortableText` (Portable Text).
 
 ## Formulaires et courriels
 
-- **Contact / proposition d'archive** : `components/ui/FormSubmission.tsx` (react-hook-form + `zodResolver`) → Server Action `sendEmail` (`_actions.ts`) → validation `ContactFormSchema` → Resend. Champ leurre `website` (anti-bot).
+- **Contact / proposition d'archive** : `components/ui/FormSubmission.tsx` (react-hook-form + `zodResolver`) → Server Action `sendEmail` (`_actions.ts`) → validation `ContactFormSchema` → Resend. Champ leurre `website` (anti-bot) et limite de débit par IP.
 - **Newsletter** : `components/ui/NewsLetters.tsx` / `footer/FooterNewsletter.tsx` → `POST /api/newsletter` → Brevo. Voir [ADR-0005](./adr/0005-courriels-resend-brevo.md).
 
 ## Animations et interface
@@ -108,7 +108,8 @@ Image Docker unique, publiée sur GHCR par GitHub Actions ; secrets au runtime. 
 | `SANITY_API_READ_TOKEN` | runtime | pour la prévisualisation | brouillons, `/api/draft` |
 | `RESEND_API_KEY` | runtime | pour le formulaire de contact | Resend |
 | `BREVO_API_KEY`, `BREVO_LIST_ID` | runtime | pour la newsletter | Brevo |
-| `BREVO_WELCOME_EMAIL_TEMPLATE_ID` | runtime | non | e-mail de bienvenue |
+| `BREVO_DOI_TEMPLATE_ID`, `BREVO_DOI_REDIRECT_URL` | runtime | pour la newsletter | modèle et page de retour du double opt-in Brevo |
+| `CONTACT_RECIPIENT` | runtime | pour le formulaire de contact | destinataire des propositions d'archive |
 | `NEXT_PUBLIC_SITE_URL` | build/runtime | non | `robots.ts`, `sitemap.ts` (URL complète, défaut `http://localhost:3000`) |
 | `HOST`, `PORT` | runtime | non | entrypoint Docker (`0.0.0.0`, `3000`) |
 | `VERCEL_ENV` | runtime | non | active stega en préproduction Vercel |
