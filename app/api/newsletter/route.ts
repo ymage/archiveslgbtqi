@@ -2,78 +2,21 @@ import axios from "axios";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
 
+import { clientIp, rateLimited } from "@/app/(next)/lib/rate-limit";
+
 const EmailSchema = z.string().email({ message: "Adresse email non valide." });
 
-async function sendWelcomeEmail(
-  email: string,
-  apiKey: string,
-  templateId: number,
-) {
-  const url = `https://api.brevo.com/v3/smtp/email`;
-  const data = {
-    to: [{ email }],
-    templateId,
-  };
+const HOUR = 60 * 60 * 1000;
+const PER_IP_LIMIT = 5;
+const GLOBAL_LIMIT = 200;
 
-  const options = {
-    headers: {
-      "Content-Type": "application/json",
-      "api-key": apiKey,
-    },
-  };
-
-  try {
-    const response = await axios.post(url, data, options);
-    if (response.status === 201) {
-      return true;
-    } else {
-      console.error(
-        "Unexpected response status from Brevo API:",
-        response.status,
-      );
-      return false;
-    }
-  } catch (error) {
-    console.error("Error sending welcome email:", error);
-    return false;
-  }
-}
-
-async function newSubscriberHandler(email: string) {
-  const API_KEY = process.env.BREVO_API_KEY;
-  const TEMPLATE_ID = parseInt(
-    process.env.BREVO_WELCOME_EMAIL_TEMPLATE_ID || "0",
-    10,
+const unexpected = (status = 500) =>
+  NextResponse.json(
+    { error: "Une erreur inattendue s'est produite." },
+    { status },
   );
 
-  if (!API_KEY) {
-    console.error("BREVO_API_KEY is not set");
-    return false;
-  }
-
-  if (TEMPLATE_ID === 0) {
-    console.warn(
-      "BREVO_WELCOME_EMAIL_TEMPLATE_ID is not set. Skipping welcome email.",
-    );
-    return true; // Skipping but returning true as the subscription was successful
-  }
-
-  const emailSent = await sendWelcomeEmail(email, API_KEY, TEMPLATE_ID);
-
-  if (emailSent) {
-    console.log("Welcome email sent successfully!");
-    return true;
-  } else {
-    console.error("Failed to send welcome email");
-    return false;
-  }
-}
-
 export async function POST(req: NextRequest) {
-  if (req.method !== "POST") {
-    return NextResponse.json({ error: "Method not allowed" }, { status: 405 });
-  }
-
   try {
     const body = await req.json();
     const emailValidation = EmailSchema.safeParse(body.email);
@@ -84,56 +27,60 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const ip = clientIp(req.headers);
+    if (
+      rateLimited(`newsletter:${ip}`, PER_IP_LIMIT, HOUR) ||
+      rateLimited("newsletter:*", GLOBAL_LIMIT, HOUR)
+    ) {
+      return NextResponse.json(
+        { error: "Trop de demandes, réessayez plus tard." },
+        { status: 429 },
+      );
+    }
+
     const BREVO_API_KEY = process.env.BREVO_API_KEY;
-    const LIST_ID = parseInt(process.env.BREVO_LIST_ID || "", 10) || 0; // Get your List ID from Brevo!
+    const LIST_ID = parseInt(process.env.BREVO_LIST_ID || "", 10) || 0;
+    const TEMPLATE_ID =
+      parseInt(process.env.BREVO_DOI_TEMPLATE_ID || "", 10) || 0;
+    const REDIRECT_URL = process.env.BREVO_DOI_REDIRECT_URL;
 
-    if (!BREVO_API_KEY || !LIST_ID) {
-      console.error("Brevo API Key or List ID not configured properly");
-      return NextResponse.json(
-        { error: "Une erreur inattendue s'est produite." },
-        { status: 500 },
-      );
+    if (!BREVO_API_KEY || !LIST_ID || !TEMPLATE_ID || !REDIRECT_URL) {
+      console.error("Brevo double opt-in is not configured properly");
+      return unexpected();
     }
 
-    const url = "https://api.brevo.com/v3/contacts";
-    const data = {
-      email: emailValidation.data, // Use the validated email
-      listIds: [LIST_ID],
-      updateEnabled: true, // Update the contact if it already exists
-    };
-
-    const options = {
-      headers: {
-        "Content-Type": "application/json",
-        "api-key": BREVO_API_KEY,
+    // Double opt-in: Brevo only adds the contact to the list once the owner clicks the confirmation link.
+    const response = await axios.post(
+      "https://api.brevo.com/v3/contacts/doubleOptinConfirmation",
+      {
+        email: emailValidation.data,
+        includeListIds: [LIST_ID],
+        templateId: TEMPLATE_ID,
+        redirectionUrl: REDIRECT_URL,
       },
-    };
+      {
+        headers: {
+          "Content-Type": "application/json",
+          "api-key": BREVO_API_KEY,
+        },
+      },
+    );
 
-    const response = await axios.post(url, data, options);
-
-    if (response.status === 201) {
-      await newSubscriberHandler(emailValidation.data);
+    if (response.status === 201 || response.status === 204) {
+      // Same answer whether or not the address is already subscribed, so the route is not an oracle.
       return NextResponse.json(
-        { message: "Merci pour votre inscription." },
-        { status: 201 },
-      );
-    } else if (response.status === 204) {
-      return NextResponse.json(
-        { message: "Vous êtes déjà abonné." },
-        { status: 200 },
-      );
-    } else {
-      console.error("Brevo API Error:", response.status, response.data);
-      return NextResponse.json(
-        { error: "Une erreur inattendue s'est produite." },
-        { status: response.status || 500 },
+        {
+          message:
+            "Merci ! Si cette adresse est valide, un e-mail de confirmation vient de vous être envoyé.",
+        },
+        { status: 202 },
       );
     }
+
+    console.error("Brevo API Error:", response.status, response.data);
+    return unexpected();
   } catch (error) {
     console.error("Error subscribing to Brevo:", error);
-    return NextResponse.json(
-      { error: "Une erreur inattendue s'est produite." },
-      { status: 500 },
-    );
+    return unexpected();
   }
 }
